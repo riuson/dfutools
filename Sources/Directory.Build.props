@@ -1,0 +1,44 @@
+<Project>
+
+    <PropertyGroup>
+        <Company>riuson</Company>
+        <Product>DfuSeConverter</Product>
+        <Copyright>2020</Copyright>
+        <Deterministic>true</Deterministic>
+        <RuntimeIdentifiers>win10-x86;win10-x64;win7-x86;win10-x64</RuntimeIdentifiers>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup Condition="$(AssemblyName.Contains('Tests'))">
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+        <PackageReference Include="Castle.Core" Version="4.4.1" />
+        <PackageReference Include="Moq" Version="4.14.5" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="NUnit" Version="3.12.0" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <OutputPath>$(SolutionDir)_Artifacts\$(TargetFramework)\bin\$(Configuration)\</OutputPath>
+        <OutDir>$(OutputPath)</OutDir>
+        <IntermediateOutputPath>$(SolutionDir)_Artifacts\$(TargetFramework)\obj\$(Configuration)\$(MSBuildProjectName)\</IntermediateOutputPath>
+        <MSBuildProjectExtensionsPath>$(SolutionDir)_Artifacts\ext\$(Configuration)\$(MSBuildProjectName)\</MSBuildProjectExtensionsPath>
+        <ProjectAssetsFile>$(SolutionDir)_Artifacts\ext\$(Configuration)\$(MSBuildProjectName)\project.assets.json</ProjectAssetsFile>
+        <DocumentationFile>$(SolutionDir)_Artifacts\$(TargetFramework)\bin\doc\$(Configuration)\$(MSBuildProjectName).xml</DocumentationFile>
+        <GitVersionFilePath>$(SolutionDir)_Artifacts\$(TargetFramework)\obj\$(Configuration)\GitVersion.props</GitVersionFilePath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>
