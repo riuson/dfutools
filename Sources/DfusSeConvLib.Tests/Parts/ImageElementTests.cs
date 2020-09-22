@@ -25,9 +25,10 @@ namespace DfuSeConvLib.Tests.Parts {
                 0x65
             };
 
-            var sut = new ImageElement();
-            sut.ElementAddress = 0x08000000;
-            sut.Data = sample;
+            var sut = new ImageElement {
+                ElementAddress = 0x08000000,
+                Data = sample
+            };
 
             var tempStream = new MemoryStream();
             sut.Write(tempStream);

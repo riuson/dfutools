@@ -47,10 +47,10 @@ namespace DfuSeConvLib.Tests.Parts {
             sut.TargetNamed = true;
             sut.TargetName = "01234567890123456789";
 
-            var dfuImagMock = new Mock<IDfuImage>();
-            dfuImagMock.SetupGet(x => x.ImageElements).Returns(new EditableList<IImageElement>());
+            var dfuImageMock = new Mock<IDfuImage>();
+            dfuImageMock.SetupGet(x => x.ImageElements).Returns(new EditableList<IImageElement>());
             var tempStream = new MemoryStream();
-            sut.Write(tempStream, dfuImagMock.Object);
+            sut.Write(tempStream, dfuImageMock.Object);
 
             var actual = tempStream.ToArray();
 
