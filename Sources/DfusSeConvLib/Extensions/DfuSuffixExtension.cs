@@ -1,14 +1,14 @@
 ﻿using DfuSeConvLib.Helpers;
-using DfuSeConvLib.Parts;
+using DfuSeConvLib.Interfaces;
 using System;
 using System.IO;
 using System.Text;
 
 namespace DfuSeConvLib.Extensions {
     public static class DfuSuffixExtension {
-        public static uint CalculateSize(this DfuSuffix dfuSuffix) => 16;
+        public static uint CalculateSize(this IDfuSuffix dfuSuffix) => 16;
 
-        public static void Write(this DfuSuffix dfuSuffix, Stream stream) {
+        public static void Write(this IDfuSuffix dfuSuffix, Stream stream) {
             using (var writer = new BinaryWriter(stream, Encoding.ASCII, true)) {
                 writer.Write(Convert.ToUInt16(dfuSuffix.Device));
                 writer.Write(Convert.ToUInt16(dfuSuffix.Product));

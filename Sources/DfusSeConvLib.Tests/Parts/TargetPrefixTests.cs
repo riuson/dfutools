@@ -1,5 +1,6 @@
 ﻿using Castle.Components.DictionaryAdapter;
 using DfuSeConvLib.Extensions;
+using DfuSeConvLib.Interfaces;
 using DfuSeConvLib.Parts;
 using Moq;
 using NUnit.Framework;
@@ -46,8 +47,8 @@ namespace DfuSeConvLib.Tests.Parts {
             sut.TargetNamed = true;
             sut.TargetName = "01234567890123456789";
 
-            var dfuImagMock = new Mock<DfuImage>();
-            dfuImagMock.SetupGet(x => x.ImageElements).Returns(new EditableList<ImageElement>());
+            var dfuImagMock = new Mock<IDfuImage>();
+            dfuImagMock.SetupGet(x => x.ImageElements).Returns(new EditableList<IImageElement>());
             var tempStream = new MemoryStream();
             sut.Write(tempStream, dfuImagMock.Object);
 

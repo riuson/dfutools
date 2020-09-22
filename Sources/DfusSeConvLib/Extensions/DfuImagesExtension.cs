@@ -1,14 +1,14 @@
-﻿using DfuSeConvLib.Parts;
+﻿using DfuSeConvLib.Interfaces;
 using System;
 using System.IO;
 using System.Linq;
 
 namespace DfuSeConvLib.Extensions {
     public static class DfuImagesExtension {
-        public static uint CalculateSize(this DfuImages dfuImages) =>
+        public static uint CalculateSize(this IDfuImages dfuImages) =>
             Convert.ToUInt32(dfuImages.Images.Sum(x => x.CalculateSize()));
 
-        public static void Write(this DfuImages dfuImages, Stream stream) {
+        public static void Write(this IDfuImages dfuImages, Stream stream) {
             foreach (var image in dfuImages.Images) {
                 image.Write(stream);
             }

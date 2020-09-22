@@ -1,48 +1,13 @@
-﻿namespace DfuSeConvLib.Parts {
-    /// <summary>
-    /// The DFU Suffix, as specified in the DFU specification, allows the host software to detect and
-    /// prevent attempts to download incompatible firmware.The Suffix buffer is represented in
-    /// Little Endian order.
-    /// </summary>
-    public class DfuSuffix {
-        /// <summary>
-        /// The Device field gives the firmware version contained in the file, or 0xFFFF if ignored.
-        /// </summary>
+﻿using DfuSeConvLib.Interfaces;
+
+namespace DfuSeConvLib.Parts {
+    public class DfuSuffix : IDfuSuffix {
         public int Device { get; set; } = 0xffff;
-
-        /// <summary>
-        /// The Product field give the Product ID of the
-        /// device that the file is intended for, or 0xFFFF if the field is ignored.
-        /// </summary>
         public int Product { get; set; } = 0xffff;
-
-        /// <summary>
-        /// The Vendor field give the Vendor ID of the
-        /// device that the file is intended for, or 0xFFFF if the field is ignored.
-        /// </summary>
         public int Vendor { get; set; } = 0xffff;
-
-        /// <summary>
-        /// The DFU field, fixed to 0x011A, gives the DFU specification number. This value
-        /// differs from that specified in standard DFU rev1.1.
-        /// </summary>
         public int Dfu { get; set; } = 0x011a;
-
-        /// <summary>
-        /// The Signature field contains a fixed string of three unsigned characters (44h, 46h,
-        /// 55h). In the file they appear in reverse order, allowing valid DFU files to be recognized.
-        /// </summary>
         public string DfuSignature { get; set; } = "UFD";
-
-        /// <summary>
-        /// The Length field, currently fixed to 16, gives the length of the DFU Suffix itself in bytes.
-        /// </summary>
         public int Length { get; set; } = 0x10;
-
-        /// <summary>
-        /// The CRC (Cyclic Redundancy Check) field is the CRC calculated over the whole file
-        /// except for the CRC data itself.
-        /// </summary>
         public uint Crc { get; set; } = 0;
     }
 }
