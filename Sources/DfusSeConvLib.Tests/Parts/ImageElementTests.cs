@@ -1,5 +1,6 @@
-﻿using DfuSeConvLib.Extensions;
-using DfuSeConvLib.Parts;
+﻿using DfuSeConvLib.Interfaces;
+using DfuSeConvLib.Serialization;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -25,17 +26,19 @@ namespace DfuSeConvLib.Tests.Parts {
                 0x65
             };
 
-            var sut = new ImageElement {
-                ElementAddress = 0x08000000,
-                Data = sample
-            };
+            var imageElementMock = new Mock<IImageElement>();
+            imageElementMock.SetupGet(x => x.ElementAddress).Returns(0x08000000);
+            imageElementMock.SetupGet(x => x.Data).Returns(sample);
+            imageElementMock.SetupGet(x => x.ElementSize).Returns(Convert.ToUInt32(sample.Length));
+
+            var sut = new ImageElementSerializer(imageElementMock.Object);
 
             var tempStream = new MemoryStream();
             sut.Write(tempStream);
 
             var actual = tempStream.ToArray();
 
-            Assert.That(sut.ElementSize, Is.EqualTo(Convert.ToUInt32(sample.Length)));
+            Assert.That(sut.Size, Is.EqualTo(Convert.ToUInt32(sample.Length + 8)));
             Assert.That(actual, Is.EqualTo(expected));
         }
     }

@@ -1,7 +1,6 @@
 ﻿using Castle.Components.DictionaryAdapter;
-using DfuSeConvLib.Extensions;
 using DfuSeConvLib.Interfaces;
-using DfuSeConvLib.Parts;
+using DfuSeConvLib.Serialization;
 using Moq;
 using NUnit.Framework;
 using System.IO;
@@ -41,16 +40,19 @@ namespace DfuSeConvLib.Tests.Parts {
                 0, 0, 0, 0
             };
 
-            var sut = new TargetPrefix();
-            sut.Signature = "0123456789";
-            sut.AlternateSetting = 1;
-            sut.TargetNamed = true;
-            sut.TargetName = "01234567890123456789";
+            var targetPrefixMock = new Mock<ITargetPrefix>();
+            targetPrefixMock.SetupGet(x => x.Signature).Returns("0123456789");
+            targetPrefixMock.SetupGet(x => x.AlternateSetting).Returns(1);
+            targetPrefixMock.SetupGet(x => x.TargetNamed).Returns(true);
+            targetPrefixMock.SetupGet(x => x.TargetName).Returns("01234567890123456789");
 
             var dfuImageMock = new Mock<IDfuImage>();
             dfuImageMock.SetupGet(x => x.ImageElements).Returns(new EditableList<IImageElement>());
             var tempStream = new MemoryStream();
-            sut.Write(tempStream, dfuImageMock.Object);
+
+            var sut = new TargetPrefixSerializer(targetPrefixMock.Object, dfuImageMock.Object.ImageElements);
+
+            sut.Write(tempStream);
 
             var actual = tempStream.ToArray();
 
