@@ -1,6 +1,5 @@
 ﻿using Castle.Components.DictionaryAdapter;
 using DfuSeConvLib.Interfaces;
-using DfuSeConvLib.Parts;
 using DfuSeConvLib.Serialization;
 using Moq;
 using NUnit.Framework;
@@ -34,7 +33,7 @@ namespace DfuSeConvLib.Tests.Parts {
 
             var sut = new DfuSerializer(
                 dfuMock.Object,
-                a => dfuPrefixSerializerMock.Object,
+                (a, _) => dfuPrefixSerializerMock.Object,
                 b => dfuImagesSerializerMock.Object,
                 c => dfuSuffixSerializerMock.Object);
 
@@ -131,9 +130,9 @@ namespace DfuSeConvLib.Tests.Parts {
 
             var sut = new DfuSerializer(
                 dfuMock.Object,
-                iDfuPrefix => new DfuPrefixSerializer(
+                (iDfuPrefix, iDfuImages) => new DfuPrefixSerializer(
                     iDfuPrefix,
-                    dfuImagesMock.Object,
+                    iDfuImages,
                     iDfuImage => new DfuImageSerializer(
                         iDfuImage,
                         (a, b) => new TargetPrefixSerializer(a, b),

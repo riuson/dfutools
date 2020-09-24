@@ -5,13 +5,13 @@ using System.IO;
 namespace DfuSeConvLib.Serialization {
     internal class DfuSerializer : ISerializer {
         private readonly Func<IDfuImages, ISerializer> _createDfuImagesSerializer;
-        private readonly Func<IDfuPrefix, ISerializer> _createDfuPrefixSerializer;
+        private readonly Func<IDfuPrefix, IDfuImages, ISerializer> _createDfuPrefixSerializer;
         private readonly Func<IDfuSuffix, ISerializer> _createDfuSuffixSerializer;
         private readonly IDfu _dfu;
 
         public DfuSerializer(
             IDfu dfu,
-            Func<IDfuPrefix, ISerializer> createDfuPrefixSerializer,
+            Func<IDfuPrefix, IDfuImages, ISerializer> createDfuPrefixSerializer,
             Func<IDfuImages, ISerializer> createDfuImagesSerializer,
             Func<IDfuSuffix, ISerializer> createDfuSuffixSerializer) {
             this._dfu = dfu;
@@ -22,7 +22,7 @@ namespace DfuSeConvLib.Serialization {
 
         public uint Size {
             get {
-                var dfuPrefixSerializer = this._createDfuPrefixSerializer(this._dfu.Prefix);
+                var dfuPrefixSerializer = this._createDfuPrefixSerializer(this._dfu.Prefix, this._dfu.Images);
                 var dfuImagesSerializer = this._createDfuImagesSerializer(this._dfu.Images);
                 var dfuSuffixSerializer = this._createDfuSuffixSerializer(this._dfu.Suffix);
 
@@ -31,7 +31,7 @@ namespace DfuSeConvLib.Serialization {
         }
 
         public void Write(Stream stream) {
-            var dfuPrefixSerializer = this._createDfuPrefixSerializer(this._dfu.Prefix);
+            var dfuPrefixSerializer = this._createDfuPrefixSerializer(this._dfu.Prefix, this._dfu.Images);
             dfuPrefixSerializer.Write(stream);
 
             var dfuImagesSerializer = this._createDfuImagesSerializer(this._dfu.Images);
