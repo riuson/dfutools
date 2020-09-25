@@ -1,7 +1,7 @@
 ﻿using DfuSeConvLib.Interfaces;
 
 namespace DfuSeConvLib.Parts {
-    public class DfuPrefix : IDfuPrefix {
+    internal class DfuPrefix : IDfuPrefix {
         private static readonly string StandardSignature = "DfuSe";
         private static readonly int StandardVersion = 1;
 

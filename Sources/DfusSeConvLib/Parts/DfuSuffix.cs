@@ -1,7 +1,7 @@
 ﻿using DfuSeConvLib.Interfaces;
 
 namespace DfuSeConvLib.Parts {
-    public class DfuSuffix : IDfuSuffix {
+    internal class DfuSuffix : IDfuSuffix {
         public int Device { get; set; } = 0xffff;
         public int Product { get; set; } = 0xffff;
         public int Vendor { get; set; } = 0xffff;

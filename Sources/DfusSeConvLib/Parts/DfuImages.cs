@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace DfuSeConvLib.Parts {
-    public class DfuImages : IDfuImages {
+    internal class DfuImages : IDfuImages {
         public List<IDfuImage> Images { get; } = new List<IDfuImage>();
     }
 }
