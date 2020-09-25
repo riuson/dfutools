@@ -31,14 +31,14 @@ namespace DfuSeConvLib.Tests.Parts {
             imageElementMock.SetupGet(x => x.Data).Returns(sample);
             imageElementMock.SetupGet(x => x.ElementSize).Returns(Convert.ToUInt32(sample.Length));
 
-            var sut = new ImageElementSerializer(imageElementMock.Object);
+            var sut = new ImageElementSerializer();
 
             var tempStream = new MemoryStream();
-            sut.Write(tempStream);
+            sut.Write(tempStream, imageElementMock.Object);
 
             var actual = tempStream.ToArray();
 
-            Assert.That(sut.Size, Is.EqualTo(Convert.ToUInt32(sample.Length + 8)));
+            Assert.That(sut.GetSize(imageElementMock.Object), Is.EqualTo(Convert.ToUInt32(sample.Length + 8)));
             Assert.That(actual, Is.EqualTo(expected));
         }
     }

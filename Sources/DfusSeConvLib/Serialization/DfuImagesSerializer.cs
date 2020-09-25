@@ -3,34 +3,28 @@ using System;
 using System.IO;
 
 namespace DfuSeConvLib.Serialization {
-    internal class DfuImagesSerializer : ISerializer {
-        private readonly Func<IDfuImage, ISerializer> _createDfuImageSerializer;
-        private readonly IDfuImages _dfuImages;
+    internal class DfuImagesSerializer : IDfuImagesSerializer {
+        private readonly Func<IDfuImageSerializer> _createDfuImageSerializer;
 
         public DfuImagesSerializer(
-            IDfuImages dfuImages,
-            Func<IDfuImage, ISerializer> createDfuImageSerializer) {
-            this._dfuImages = dfuImages;
+            Func<IDfuImageSerializer> createDfuImageSerializer) =>
             this._createDfuImageSerializer = createDfuImageSerializer;
-        }
 
-        public uint Size {
-            get {
-                uint result = 0;
+        public uint GetSize(IDfuImages dfuImages) {
+            uint result = 0;
 
-                foreach (var image in this._dfuImages.Images) {
-                    var dfuImageSerializer = this._createDfuImageSerializer(image);
-                    result += dfuImageSerializer.Size;
-                }
-
-                return result;
+            foreach (var image in dfuImages.Images) {
+                var dfuImageSerializer = this._createDfuImageSerializer();
+                result += dfuImageSerializer.GetSize(image);
             }
+
+            return result;
         }
 
-        public void Write(Stream stream) {
-            foreach (var image in this._dfuImages.Images) {
-                var dfuImageSerializer = this._createDfuImageSerializer(image);
-                dfuImageSerializer.Write(stream);
+        public void Write(Stream stream, IDfuImages dfuImages) {
+            foreach (var image in dfuImages.Images) {
+                var dfuImageSerializer = this._createDfuImageSerializer();
+                dfuImageSerializer.Write(stream, image);
             }
         }
     }

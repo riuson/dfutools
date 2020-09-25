@@ -1,46 +1,40 @@
 ﻿using DfuSeConvLib.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace DfuSeConvLib.Serialization {
-    internal class DfuImageSerializer : ISerializer {
-        private readonly Func<IImageElement, ISerializer> _createImageElement;
-        private readonly Func<ITargetPrefix, IEnumerable<IImageElement>, ISerializer> _createTargetPrefixSerializer;
-        private readonly IDfuImage _dfuImage;
+    internal class DfuImageSerializer : IDfuImageSerializer {
+        private readonly Func<IImageElementSerializer> _createImageElementSerializer;
+        private readonly Func<ITargetPrefixSerializer> _createTargetPrefixSerializer;
 
         public DfuImageSerializer(
-            IDfuImage dfuImage,
-            Func<ITargetPrefix, IEnumerable<IImageElement>, ISerializer> createTargetPrefixSerializer,
-            Func<IImageElement, ISerializer> createImageElement) {
-            this._dfuImage = dfuImage;
+            Func<ITargetPrefixSerializer> createTargetPrefixSerializer,
+            Func<IImageElementSerializer> createImageElementSerializer) {
             this._createTargetPrefixSerializer = createTargetPrefixSerializer;
-            this._createImageElement = createImageElement;
+            this._createImageElementSerializer = createImageElementSerializer;
         }
 
-        public uint Size {
-            get {
-                var targetPrefixSerializer =
-                    this._createTargetPrefixSerializer(this._dfuImage.Prefix, this._dfuImage.ImageElements);
-                var result = targetPrefixSerializer.Size;
-
-                foreach (var dfuImageElement in this._dfuImage.ImageElements) {
-                    var imageElementSerializer = this._createImageElement(dfuImageElement);
-                    result += imageElementSerializer.Size;
-                }
-
-                return result;
-            }
-        }
-
-        public void Write(Stream stream) {
+        public uint GetSize(IDfuImage dfuImage) {
             var targetPrefixSerializer =
-                this._createTargetPrefixSerializer(this._dfuImage.Prefix, this._dfuImage.ImageElements);
-            targetPrefixSerializer.Write(stream);
+                this._createTargetPrefixSerializer();
+            var result = targetPrefixSerializer.GetSize();
 
-            foreach (var dfuImageElement in this._dfuImage.ImageElements) {
-                var imageElementSerializer = this._createImageElement(dfuImageElement);
-                imageElementSerializer.Write(stream);
+            foreach (var imageElement in dfuImage.ImageElements) {
+                var imageElementSerializer = this._createImageElementSerializer();
+                result += imageElementSerializer.GetSize(imageElement);
+            }
+
+            return result;
+        }
+
+        public void Write(Stream stream, IDfuImage dfuImage) {
+            var targetPrefixSerializer =
+                this._createTargetPrefixSerializer();
+            targetPrefixSerializer.Write(stream, dfuImage.Prefix, dfuImage.ImageElements);
+
+            foreach (var dfuImageElement in dfuImage.ImageElements) {
+                var imageElementSerializer = this._createImageElementSerializer();
+                imageElementSerializer.Write(stream, dfuImageElement);
             }
         }
     }

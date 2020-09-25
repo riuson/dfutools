@@ -3,42 +3,39 @@ using System;
 using System.IO;
 
 namespace DfuSeConvLib.Serialization {
-    internal class DfuSerializer : ISerializer {
-        private readonly Func<IDfuImages, ISerializer> _createDfuImagesSerializer;
-        private readonly Func<IDfuPrefix, IDfuImages, ISerializer> _createDfuPrefixSerializer;
-        private readonly Func<IDfuSuffix, ISerializer> _createDfuSuffixSerializer;
-        private readonly IDfu _dfu;
+    internal class DfuSerializer : IDfuSerializer {
+        private readonly Func<IDfuImagesSerializer> _createDfuImagesSerializer;
+        private readonly Func<IDfuPrefixSerializer> _createDfuPrefixSerializer;
+        private readonly Func<IDfuSuffixSerializer> _createDfuSuffixSerializer;
 
         public DfuSerializer(
-            IDfu dfu,
-            Func<IDfuPrefix, IDfuImages, ISerializer> createDfuPrefixSerializer,
-            Func<IDfuImages, ISerializer> createDfuImagesSerializer,
-            Func<IDfuSuffix, ISerializer> createDfuSuffixSerializer) {
-            this._dfu = dfu;
+            Func<IDfuPrefixSerializer> createDfuPrefixSerializer,
+            Func<IDfuImagesSerializer> createDfuImagesSerializer,
+            Func<IDfuSuffixSerializer> createDfuSuffixSerializer) {
             this._createDfuPrefixSerializer = createDfuPrefixSerializer;
             this._createDfuImagesSerializer = createDfuImagesSerializer;
             this._createDfuSuffixSerializer = createDfuSuffixSerializer;
         }
 
-        public uint Size {
-            get {
-                var dfuPrefixSerializer = this._createDfuPrefixSerializer(this._dfu.Prefix, this._dfu.Images);
-                var dfuImagesSerializer = this._createDfuImagesSerializer(this._dfu.Images);
-                var dfuSuffixSerializer = this._createDfuSuffixSerializer(this._dfu.Suffix);
+        public uint GetSize(IDfu dfu) {
+            var dfuPrefixSerializer = this._createDfuPrefixSerializer();
+            var dfuImagesSerializer = this._createDfuImagesSerializer();
+            var dfuSuffixSerializer = this._createDfuSuffixSerializer();
 
-                return dfuPrefixSerializer.Size + dfuImagesSerializer.Size + dfuSuffixSerializer.Size;
-            }
+            return dfuPrefixSerializer.GetSize() +
+                   dfuImagesSerializer.GetSize(dfu.Images) +
+                   dfuSuffixSerializer.GetSize();
         }
 
-        public void Write(Stream stream) {
-            var dfuPrefixSerializer = this._createDfuPrefixSerializer(this._dfu.Prefix, this._dfu.Images);
-            dfuPrefixSerializer.Write(stream);
+        public void Write(Stream stream, IDfu dfu) {
+            var dfuPrefixSerializer = this._createDfuPrefixSerializer();
+            dfuPrefixSerializer.Write(stream, dfu.Prefix, dfu.Images);
 
-            var dfuImagesSerializer = this._createDfuImagesSerializer(this._dfu.Images);
-            dfuImagesSerializer.Write(stream);
+            var dfuImagesSerializer = this._createDfuImagesSerializer();
+            dfuImagesSerializer.Write(stream, dfu.Images);
 
-            var dfuSuffixSerializer = this._createDfuSuffixSerializer(this._dfu.Suffix);
-            dfuSuffixSerializer.Write(stream);
+            var dfuSuffixSerializer = this._createDfuSuffixSerializer();
+            dfuSuffixSerializer.Write(stream, dfu.Suffix);
         }
     }
 }

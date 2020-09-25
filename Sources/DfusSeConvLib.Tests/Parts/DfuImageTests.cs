@@ -75,10 +75,9 @@ namespace DfuSeConvLib.Tests.Parts {
             var tempStream = new MemoryStream();
 
             var sut = new DfuImageSerializer(
-                dfuimageMock.Object,
-                (x, y) => new TargetPrefixSerializer(x, y),
-                x => new ImageElementSerializer(x));
-            sut.Write(tempStream);
+                () => new TargetPrefixSerializer(),
+                () => new ImageElementSerializer());
+            sut.Write(tempStream, dfuimageMock.Object);
 
             var actual = tempStream.ToArray();
 

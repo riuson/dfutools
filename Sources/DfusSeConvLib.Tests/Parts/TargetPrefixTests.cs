@@ -50,9 +50,9 @@ namespace DfuSeConvLib.Tests.Parts {
             dfuImageMock.SetupGet(x => x.ImageElements).Returns(new EditableList<IImageElement>());
             var tempStream = new MemoryStream();
 
-            var sut = new TargetPrefixSerializer(targetPrefixMock.Object, dfuImageMock.Object.ImageElements);
+            var sut = new TargetPrefixSerializer();
 
-            sut.Write(tempStream);
+            sut.Write(tempStream, targetPrefixMock.Object, dfuImageMock.Object.ImageElements);
 
             var actual = tempStream.ToArray();
 

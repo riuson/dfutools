@@ -4,36 +4,28 @@ using System.IO;
 using System.Text;
 
 namespace DfuSeConvLib.Serialization {
-    internal class DfuPrefixSerializer : ISerializer {
-        private readonly Func<IDfuImage, ISerializer> _createDfuImageSerializer;
-        private readonly IDfuImages _dfuImages;
-        private readonly IDfuPrefix _dfuPrefix;
+    internal class DfuPrefixSerializer : IDfuPrefixSerializer {
+        private readonly Func<IDfuImagesSerializer> _createDfuImagesSerializer;
 
         public DfuPrefixSerializer(
+            Func<IDfuImagesSerializer> createDfuImagesSerializer) =>
+            this._createDfuImagesSerializer = createDfuImagesSerializer;
+
+        public uint GetSize() => 11;
+
+        public void Write(
+            Stream stream,
             IDfuPrefix dfuPrefix,
-            IDfuImages dfuImages,
-            Func<IDfuImage, ISerializer> createDfuImageSerializer) {
-            this._dfuPrefix = dfuPrefix;
-            this._dfuImages = dfuImages;
-            this._createDfuImageSerializer = createDfuImageSerializer;
-        }
-
-        public uint Size => 11;
-
-        public void Write(Stream stream) {
+            IDfuImages dfuImages) {
             using (var writer = new BinaryWriter(stream, Encoding.ASCII, true)) {
-                writer.Write(this._dfuPrefix.Signature.PadRight(5, '\x0000').ToCharArray(), 0, 5);
-                writer.Write(Convert.ToByte(this._dfuPrefix.Version));
+                writer.Write(dfuPrefix.Signature.PadRight(5, '\x0000').ToCharArray(), 0, 5);
+                writer.Write(Convert.ToByte(dfuPrefix.Version));
 
-                uint totalLength = 11;
-
-                foreach (var image in this._dfuImages.Images) {
-                    var dfuImageSerializer = this._createDfuImageSerializer(image);
-                    totalLength += dfuImageSerializer.Size;
-                }
+                var dfuImagesSerializer = this._createDfuImagesSerializer();
+                var totalLength = 11 + dfuImagesSerializer.GetSize(dfuImages);
 
                 writer.Write(totalLength);
-                writer.Write(Convert.ToByte(this._dfuImages.Images.Count));
+                writer.Write(Convert.ToByte(dfuImages.Images.Count));
             }
         }
     }

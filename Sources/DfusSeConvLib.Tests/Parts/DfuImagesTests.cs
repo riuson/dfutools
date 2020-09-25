@@ -20,18 +20,19 @@ namespace DfuSeConvLib.Tests.Parts {
 
             byte b = 0;
 
-            var dfuSerializerMock = new Mock<ISerializer>();
-            dfuSerializerMock.Setup(x => x.Write(It.IsAny<Stream>())).Callback<Stream>(x => {
-                var array = new[] { b++, b++, b++, b++ };
-                x.Write(array, 0, 4);
-            });
+            var dfuSerializerMock = new Mock<IDfuImageSerializer>();
+            dfuSerializerMock.Setup(x =>
+                    x.Write(It.IsAny<Stream>(), It.IsAny<IDfuImage>()))
+                .Callback<Stream, IDfuImage>((x, d) => {
+                    var array = new[] { b++, b++, b++, b++ };
+                    x.Write(array, 0, 4);
+                });
 
             var sut = new DfuImagesSerializer(
-                dfuImagesMock.Object,
-                x => dfuSerializerMock.Object);
+                () => dfuSerializerMock.Object);
 
             var tempStream = new MemoryStream();
-            sut.Write(tempStream);
+            sut.Write(tempStream, dfuImagesMock.Object);
 
             var actual = tempStream.ToArray();
             var expected = Enumerable.Range(0, 8).Select(x => (byte) x).ToArray();

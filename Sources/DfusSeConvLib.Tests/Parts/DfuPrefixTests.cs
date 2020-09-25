@@ -24,15 +24,16 @@ namespace DfuSeConvLib.Tests.Parts {
             dfuPrefixMock.SetupGet(x => x.Signature).Returns("DfuSe");
             dfuPrefixMock.SetupGet(x => x.Version).Returns(1);
 
-            var dfuImagesSerialzerMock = new Mock<ISerializer>();
+            var dfuImagesSerialzerMock = new Mock<IDfuImagesSerializer>();
 
             var sut = new DfuPrefixSerializer(
-                dfuPrefixMock.Object,
-                dfuImagesMock.Object,
-                _ => dfuImagesSerialzerMock.Object);
+                () => new DfuImagesSerializer(
+                    () => new DfuImageSerializer(
+                        () => new TargetPrefixSerializer(),
+                        () => new ImageElementSerializer())));
 
             var tempStream = new MemoryStream();
-            sut.Write(tempStream);
+            sut.Write(tempStream, dfuPrefixMock.Object, dfuImagesMock.Object);
 
             var actual = tempStream.ToArray();
 

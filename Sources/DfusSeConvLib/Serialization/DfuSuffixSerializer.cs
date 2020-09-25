@@ -5,21 +5,17 @@ using System.IO;
 using System.Text;
 
 namespace DfuSeConvLib.Serialization {
-    internal class DfuSuffixSerializer : ISerializer {
-        private readonly IDfuSuffix _dfuSuffix;
+    internal class DfuSuffixSerializer : IDfuSuffixSerializer {
+        public uint GetSize() => 16;
 
-        public DfuSuffixSerializer(IDfuSuffix dfuSuffix) => this._dfuSuffix = dfuSuffix;
-
-        public uint Size => 16;
-
-        public void Write(Stream stream) {
+        public void Write(Stream stream, IDfuSuffix dfuSuffix) {
             using (var writer = new BinaryWriter(stream, Encoding.ASCII, true)) {
-                writer.Write(Convert.ToUInt16(this._dfuSuffix.Device));
-                writer.Write(Convert.ToUInt16(this._dfuSuffix.Product));
-                writer.Write(Convert.ToUInt16(this._dfuSuffix.Vendor));
-                writer.Write(Convert.ToUInt16(this._dfuSuffix.Dfu));
-                writer.Write(this._dfuSuffix.DfuSignature.PadRight(3).ToCharArray(), 0, 3);
-                writer.Write(Convert.ToByte(this._dfuSuffix.Length));
+                writer.Write(Convert.ToUInt16(dfuSuffix.Device));
+                writer.Write(Convert.ToUInt16(dfuSuffix.Product));
+                writer.Write(Convert.ToUInt16(dfuSuffix.Vendor));
+                writer.Write(Convert.ToUInt16(dfuSuffix.Dfu));
+                writer.Write(dfuSuffix.DfuSignature.PadRight(3).ToCharArray(), 0, 3);
+                writer.Write(Convert.ToByte(dfuSuffix.Length));
 
                 var position = stream.Position;
                 stream.Seek(0, SeekOrigin.Begin);

@@ -63,8 +63,8 @@ namespace DfuSeConvLib.Tests.Parts {
             var tempStream = new MemoryStream();
             tempStream.Write(sample, 0, sample.Length - 16);
 
-            var sut = new DfuSuffixSerializer(dfuSuffixMock.Object);
-            sut.Write(tempStream);
+            var sut = new DfuSuffixSerializer();
+            sut.Write(tempStream, dfuSuffixMock.Object);
 
             var array = tempStream.ToArray();
             var actual = array.Skip(sample.Length - 16).Take(16).ToArray();

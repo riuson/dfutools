@@ -18,27 +18,35 @@ namespace DfuSeConvLib.Tests.Parts {
 
             var dfuMock = new Mock<IDfu>();
 
-            var dfuPrefixSerializerMock = new Mock<ISerializer>();
+            var dfuPrefixSerializerMock = new Mock<IDfuPrefixSerializer>();
 
-            dfuPrefixSerializerMock.Setup(x => x.Write(It.IsAny<Stream>()))
-                .Callback<Stream>(x => x.Write(sample1, 0, sample1.Length));
+            dfuPrefixSerializerMock.Setup(
+                    x => x.Write(
+                        It.IsAny<Stream>(),
+                        It.IsAny<IDfuPrefix>(),
+                        It.IsAny<IDfuImages>()))
+                .Callback<Stream, IDfuPrefix, IDfuImages>((s, p, i) => s.Write(sample1, 0, sample1.Length));
 
-            var dfuImagesSerializerMock = new Mock<ISerializer>();
-            dfuImagesSerializerMock.Setup(x => x.Write(It.IsAny<Stream>()))
-                .Callback<Stream>(x => x.Write(sample2, 0, sample2.Length));
+            var dfuImagesSerializerMock = new Mock<IDfuImagesSerializer>();
+            dfuImagesSerializerMock.Setup(
+                    x => x.Write(
+                        It.IsAny<Stream>(),
+                        It.IsAny<IDfuImages>()))
+                .Callback<Stream, IDfuImages>((s, i) => s.Write(sample2, 0, sample2.Length));
 
-            var dfuSuffixSerializerMock = new Mock<ISerializer>();
-            dfuSuffixSerializerMock.Setup(x => x.Write(It.IsAny<Stream>()))
-                .Callback<Stream>(x => x.Write(sample3, 0, sample3.Length));
+            var dfuSuffixSerializerMock = new Mock<IDfuSuffixSerializer>();
+            dfuSuffixSerializerMock.Setup(
+                    x => x.Write(
+                        It.IsAny<Stream>(), It.IsAny<IDfuSuffix>()))
+                .Callback<Stream, IDfuSuffix>((s, su) => s.Write(sample3, 0, sample3.Length));
 
             var sut = new DfuSerializer(
-                dfuMock.Object,
-                (a, _) => dfuPrefixSerializerMock.Object,
-                b => dfuImagesSerializerMock.Object,
-                c => dfuSuffixSerializerMock.Object);
+                () => dfuPrefixSerializerMock.Object,
+                () => dfuImagesSerializerMock.Object,
+                () => dfuSuffixSerializerMock.Object);
 
             var tempStream = new MemoryStream();
-            sut.Write(tempStream);
+            sut.Write(tempStream, dfuMock.Object);
 
             var actual = tempStream.ToArray();
             var expected = Enumerable.Range(0, 12).Select(x => (byte) x).ToArray();
@@ -129,24 +137,19 @@ namespace DfuSeConvLib.Tests.Parts {
             };
 
             var sut = new DfuSerializer(
-                dfuMock.Object,
-                (iDfuPrefix, iDfuImages) => new DfuPrefixSerializer(
-                    iDfuPrefix,
-                    iDfuImages,
-                    iDfuImage => new DfuImageSerializer(
-                        iDfuImage,
-                        (a, b) => new TargetPrefixSerializer(a, b),
-                        c => new ImageElementSerializer(c))),
-                iDfuImages => new DfuImagesSerializer(
-                    iDfuImages,
-                    x1 => new DfuImageSerializer(
-                        x1,
-                        (a, b) => new TargetPrefixSerializer(a, b),
-                        c => new ImageElementSerializer(c))),
-                x => new DfuSuffixSerializer(x));
+                () => new DfuPrefixSerializer(
+                    () => new DfuImagesSerializer(
+                        () => new DfuImageSerializer(
+                            () => new TargetPrefixSerializer(),
+                            () => new ImageElementSerializer()))),
+                () => new DfuImagesSerializer(
+                    () => new DfuImageSerializer(
+                        () => new TargetPrefixSerializer(),
+                        () => new ImageElementSerializer())),
+                () => new DfuSuffixSerializer());
 
             var tempStream = new MemoryStream();
-            sut.Write(tempStream);
+            sut.Write(tempStream, dfuMock.Object);
 
             var actual = tempStream.ToArray();
 
