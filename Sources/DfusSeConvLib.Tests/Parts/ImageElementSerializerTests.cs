@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DfuSeConvLib.Tests.Parts {
     [TestFixture]
-    public class ImageElementTests {
+    public class ImageElementSerializerTests {
         [Test]
         public void CanWrite() {
             var sample = new byte[] {

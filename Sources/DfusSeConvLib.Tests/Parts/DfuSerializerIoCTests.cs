@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DfuSeConvLib.Tests.Parts {
     [TestFixture]
-    public class DfuIoCTests : IoCSupportedTest<DfuLogicModule> {
+    public class DfuSerializerIoCTests : IoCSupportedTest<DfuLogicModule> {
         [OneTimeTearDown]
         public void TearDown() {
             this.ShutdownIoC();

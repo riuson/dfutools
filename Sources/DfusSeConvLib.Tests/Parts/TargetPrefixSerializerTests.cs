@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DfuSeConvLib.Tests.Parts {
     [TestFixture]
-    public class TargetPrefixTests {
+    public class TargetPrefixSerializerTests {
         [Test]
         public void CanWrite() {
             var expected = new byte[] {

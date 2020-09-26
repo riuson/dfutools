@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace DfuSeConvLib.Tests.Parts {
     [TestFixture]
-    public class DfuImageTests {
+    public class DfuImageSerializerTests {
         [Test]
         public void CanWrite() {
             var sampleData1 = new byte[] { 1, 2, 3, 4 };

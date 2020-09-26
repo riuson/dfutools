@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace DfuSeConvLib.Tests.Parts {
     [TestFixture]
-    public class DfuImagesTests {
+    public class DfuImagesSerializerTests {
         [Test]
         public void CanWrite() {
             var image1Mock = new Mock<IDfuImage>();
