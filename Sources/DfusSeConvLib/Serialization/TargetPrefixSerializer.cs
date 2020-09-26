@@ -18,7 +18,7 @@ namespace DfuSeConvLib.Serialization {
                 writer.Write(Convert.ToByte(targetPrefix.AlternateSetting));
                 writer.Write(targetPrefix.TargetNamed ? 1 : (uint) 0);
                 writer.Write(targetPrefix.TargetName.PadRight(255, '\x0000').ToCharArray(), 0, 255);
-                writer.Write(Convert.ToUInt32((int) imageElements.Sum(x => 4 + 4 + x.ElementSize)));
+                writer.Write(Convert.ToUInt32(imageElements.Sum(x => 4 + 4 + x.Data.Length)));
                 writer.Write(Convert.ToUInt32(imageElements.Count()));
             }
         }

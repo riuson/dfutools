@@ -26,15 +26,15 @@
         /// </summary>
         string TargetName { get; set; }
 
-        ///// <summary>
-        ///// The TargetSize field gives the whole length of the associated image excluding the
-        ///// Target prefix.
-        ///// </summary>
-        //public uint TargetSize { get; set; } = 0;
+        /// <summary>
+        /// The TargetSize field gives the whole length of the associated image excluding the
+        /// Target prefix.
+        /// </summary>
+        uint TargetSize { get; set; }
 
-        ///// <summary>
-        ///// The NbElements field gives the number of elements in the associated image.
-        ///// </summary>
-        //public uint NbElements { get; set; } = 0;
+        /// <summary>
+        /// The NbElements field gives the number of elements in the associated image.
+        /// </summary>
+        uint NbElements { get; set; }
     }
 }

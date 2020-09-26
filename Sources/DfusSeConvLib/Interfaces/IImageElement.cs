@@ -13,7 +13,7 @@
         /// <summary>
         /// The ElementSize field gives the size of the contained data.
         /// </summary>
-        uint ElementSize { get; }
+        uint ElementSize { get; set; }
 
         /// <summary>
         /// The Data field present the effective data.
