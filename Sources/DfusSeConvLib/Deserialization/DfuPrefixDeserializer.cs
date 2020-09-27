@@ -1,4 +1,5 @@
 ﻿using DfuSeConvLib.Exceptions;
+using DfuSeConvLib.Helpers;
 using DfuSeConvLib.Interfaces;
 using System;
 using System.IO;
@@ -18,18 +19,20 @@ namespace DfuSeConvLib.Deserialization {
 
         public IDfuPrefix Read(Stream stream) {
             using (var reader = new BinaryReader(stream, Encoding.ASCII, true)) {
-                var chars = reader.ReadChars(5);
-                var signature = new string(chars);
-                signature = signature.TrimEnd('\x00');
+                var signature = reader.ReadString(5);
 
                 if (signature != "DfuSe") {
-                    throw this._createException($"DfuPrefix's signature invalid: '{signature}'", stream.Position);
+                    throw this._createException(
+                        $"DfuPrefix's signature invalid: '{signature}'",
+                        stream.Position - 5);
                 }
 
                 var version = reader.ReadByte();
 
                 if (version != 1) {
-                    throw this._createException($"DfuPrefix's version not supported: {version}", stream.Position);
+                    throw this._createException(
+                        $"DfuPrefix's version not supported: {version}",
+                        stream.Position - 1);
                 }
 
                 var dfuImageSize = reader.ReadUInt32();
@@ -37,7 +40,7 @@ namespace DfuSeConvLib.Deserialization {
                 if (dfuImageSize != stream.Length - 16) {
                     throw this._createException(
                         $"DfuPrefix's image length invalid: expected {stream.Length - 16}, actual {dfuImageSize}",
-                        stream.Position);
+                        stream.Position - 4);
                 }
 
                 var targets = reader.ReadByte();

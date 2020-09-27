@@ -1,4 +1,5 @@
 ﻿using DfuSeConvLib.Exceptions;
+using DfuSeConvLib.Helpers;
 using DfuSeConvLib.Interfaces;
 using System;
 using System.IO;
@@ -18,12 +19,11 @@ namespace DfuSeConvLib.Deserialization {
 
         public ITargetPrefix Read(Stream stream) {
             using (var reader = new BinaryReader(stream, Encoding.ASCII, true)) {
-                var chars = reader.ReadChars(6);
-                var signature = new string(chars);
-                signature = signature.TrimEnd('\x00');
+                var signature = reader.ReadString(6);
 
                 if (signature != "Target") {
-                    throw this._createException($"TargetPrefix's signature invalid: '{signature}'", stream.Position);
+                    throw this._createException($"TargetPrefix's signature invalid: '{signature}'",
+                        stream.Position - 6);
                 }
 
                 var alternateSetting = reader.ReadByte();
@@ -33,9 +33,7 @@ namespace DfuSeConvLib.Deserialization {
                 var targetName = string.Empty;
 
                 if (targetNamed != 0) {
-                    chars = reader.ReadChars(255);
-                    targetName = new string(chars);
-                    targetName = targetName.TrimEnd('\x00');
+                    targetName = reader.ReadString(255);
                 }
 
                 var targetSize = reader.ReadUInt32();

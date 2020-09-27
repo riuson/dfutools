@@ -14,7 +14,7 @@ namespace DfuSeConvLib.Serialization {
                 writer.Write(Convert.ToUInt16(dfuSuffix.Product));
                 writer.Write(Convert.ToUInt16(dfuSuffix.Vendor));
                 writer.Write(Convert.ToUInt16(dfuSuffix.Dfu));
-                writer.Write(dfuSuffix.DfuSignature.PadRight(3).ToCharArray(), 0, 3);
+                writer.WriteString(dfuSuffix.DfuSignature, 3);
                 writer.Write(Convert.ToByte(dfuSuffix.Length));
 
                 var position = stream.Position;

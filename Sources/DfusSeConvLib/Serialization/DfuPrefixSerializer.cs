@@ -1,4 +1,5 @@
-﻿using DfuSeConvLib.Interfaces;
+﻿using DfuSeConvLib.Helpers;
+using DfuSeConvLib.Interfaces;
 using System;
 using System.IO;
 using System.Text;
@@ -18,7 +19,7 @@ namespace DfuSeConvLib.Serialization {
             IDfuPrefix dfuPrefix,
             IDfuImages dfuImages) {
             using (var writer = new BinaryWriter(stream, Encoding.ASCII, true)) {
-                writer.Write(dfuPrefix.Signature.PadRight(5, '\x0000').ToCharArray(), 0, 5);
+                writer.WriteString(dfuPrefix.Signature, 5);
                 writer.Write(Convert.ToByte(dfuPrefix.Version));
 
                 var dfuImagesSerializer = this._createDfuImagesSerializer();

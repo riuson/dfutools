@@ -27,15 +27,15 @@ namespace DfuSeConvLib.Deserialization {
                 if (dfu != 0x011a) {
                     throw this._createException(
                         $"DfuSuffix's field bcdDFU invalid: expected 0x011a, actual {dfu}",
-                        stream.Position);
+                        stream.Position - 2);
                 }
 
-                var chars = reader.ReadChars(3);
-                var signature = new string(chars);
-                signature = signature.TrimEnd('\x00');
+                var signature = reader.ReadString(3);
 
                 if (signature != "UFD") {
-                    throw this._createException($"DfuSuffix's signature invalid: '{signature}'", stream.Position);
+                    throw this._createException(
+                        $"DfuSuffix's signature invalid: '{signature}'",
+                        stream.Position - 3);
                 }
 
                 var length = reader.ReadByte();
@@ -43,7 +43,7 @@ namespace DfuSeConvLib.Deserialization {
                 if (length != 16) {
                     throw this._createException(
                         $"DfuSuffix's field bLength invalid: expected 16, actual {length}",
-                        stream.Position);
+                        stream.Position - 1);
                 }
 
                 var position = stream.Position;
@@ -87,7 +87,7 @@ namespace DfuSeConvLib.Deserialization {
                 if (crc32Readed != crc32Calculated) {
                     throw this._createException(
                         $"DfuSuffix's checksum invalid: calculated 0x{crc32Calculated:X8}, stored 0x{crc32Readed:X8}",
-                        stream.Position);
+                        stream.Position - 4);
                 }
 
 
