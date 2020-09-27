@@ -5,7 +5,7 @@ using Moq;
 using NUnit.Framework;
 using System.IO;
 
-namespace DfuSeConvLib.Tests.Parts {
+namespace DfuSeConvLib.Tests.Serialization {
     [TestFixture]
     public class TargetPrefixSerializerTests {
         [Test]

@@ -3,7 +3,7 @@ using DfuSeConvLib.Parts;
 using NUnit.Framework;
 using System.IO;
 
-namespace DfuSeConvLib.Tests.Parts {
+namespace DfuSeConvLib.Tests.Serialization {
     [TestFixture]
     public class DfuSerializerIoCTests : IoCSupportedTest<DfuLogicModule> {
         [OneTimeTearDown]

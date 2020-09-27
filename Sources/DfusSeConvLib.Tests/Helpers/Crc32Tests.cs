@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace DfuSeConvLib.Tests {
+namespace DfuSeConvLib.Tests.Helpers {
     [TestFixture]
     public class Crc32Tests {
         [Test]
