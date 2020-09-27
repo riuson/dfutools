@@ -2,7 +2,7 @@
 using DfuSeConvLib.Parts;
 using DfuSeConvLib.Serialization;
 
-namespace DfuSeConvLib.Tests.Parts {
+namespace DfuSeConvLib {
     public class DfuLogicModule : Module {
         protected override void Load(ContainerBuilder builder) {
             builder.RegisterType<ImageElement>()
