@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DfuConvLib", "Sources\DfuCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DfuConvLib.Tests", "Sources\DfuConvLib.Tests\DfuConvLib.Tests.csproj", "{56934EB8-2AEC-4D04-8963-FEA9A04FC4B7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DfuConvCli", "Sources\DfuConvCli\DfuConvCli.csproj", "{AFBB50DC-B81A-4CBD-94BF-8924BE0E65AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{56934EB8-2AEC-4D04-8963-FEA9A04FC4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56934EB8-2AEC-4D04-8963-FEA9A04FC4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56934EB8-2AEC-4D04-8963-FEA9A04FC4B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFBB50DC-B81A-4CBD-94BF-8924BE0E65AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFBB50DC-B81A-4CBD-94BF-8924BE0E65AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFBB50DC-B81A-4CBD-94BF-8924BE0E65AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFBB50DC-B81A-4CBD-94BF-8924BE0E65AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C44B365D-64F4-4911-9738-648FDD69A3FF} = {8C399723-4385-44B9-AB6E-BD783E8A382A}
 		{56934EB8-2AEC-4D04-8963-FEA9A04FC4B7} = {8C399723-4385-44B9-AB6E-BD783E8A382A}
+		{AFBB50DC-B81A-4CBD-94BF-8924BE0E65AC} = {8C399723-4385-44B9-AB6E-BD783E8A382A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11C50B46-8B02-4A5A-8F91-8D1B786124EA}
