@@ -3,7 +3,7 @@ using CommandLine.Text;
 using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuToolCli.Tools.Show {
+namespace DfuToolCli.Tools.Dfus.Show {
     [Verb("show", HelpText = "Show DFU contents.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }

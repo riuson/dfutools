@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace DfuToolCli.Tools.Show {
+namespace DfuToolCli.Tools.Dfus.Show {
     internal class Processor : IVerbProcessor {
         private readonly Func<IDfuDeserializer> _createDfuDeserializer;
 

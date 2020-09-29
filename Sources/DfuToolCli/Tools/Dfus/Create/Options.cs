@@ -3,7 +3,7 @@ using CommandLine.Text;
 using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuToolCli.Tools.Create {
+namespace DfuToolCli.Tools.Dfus.Create {
     [Verb("create", HelpText = "Create empty DFU.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }

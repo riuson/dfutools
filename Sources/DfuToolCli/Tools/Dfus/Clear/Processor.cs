@@ -3,7 +3,7 @@ using DfuToolCli.Interfaces;
 using System;
 using System.IO;
 
-namespace DfuToolCli.Tools.Clear {
+namespace DfuToolCli.Tools.Dfus.Clear {
     internal class Processor : IVerbProcessor {
         private readonly Func<IDfuDeserializer> _createDfuDeserializer;
         private readonly Func<IDfuSerializer> _createDfuSerializer;

@@ -3,7 +3,7 @@ using CommandLine.Text;
 using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuToolCli.Tools.Change {
+namespace DfuToolCli.Tools.Dfus.Change {
     [Verb("change", HelpText = "Change IDs of DFU file.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }

@@ -4,7 +4,7 @@ using DfuToolCli.Interfaces;
 using System;
 using System.IO;
 
-namespace DfuToolCli.Tools.Create {
+namespace DfuToolCli.Tools.Dfus.Create {
     internal class Processor : IVerbProcessor {
         private readonly Func<IDfu> _createDfu;
         private readonly Func<IDfuImages> _createDfuImages;

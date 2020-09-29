@@ -1,7 +1,7 @@
 ﻿using DfuToolCli.Interfaces;
 using System;
 
-namespace DfuToolCli.Tools.Clear {
+namespace DfuToolCli.Tools.Dfus.Show {
     internal class Link : ILink {
         private readonly Func<Processor> _createProcessor;
 
