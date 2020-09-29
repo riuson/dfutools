@@ -19,12 +19,12 @@ namespace DfuToolCli.Tools.Show {
         public static IEnumerable<Example> Examples =>
             new List<Example> {
                 new Example(
-                    "Show DFU content.",
+                    "Show DFU content",
                     new Options {
                         File = "sample.dfu"
                     }),
                 new Example(
-                    "Show DFU content with specified amount of image element's data.",
+                    "Show DFU content with specified amount of image element's data",
                     new Options {
                         File = "sample.dfu",
                         ElementDataLength = 8

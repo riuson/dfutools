@@ -36,12 +36,12 @@ namespace DfuToolCli.Tools.Create {
         public static IEnumerable<Example> Examples =>
             new List<Example> {
                 new Example(
-                    "Create empty DFU file.",
+                    "Create empty DFU file",
                     new Options {
                         File = "sample.dfu"
                     }),
                 new Example(
-                    "Create empty DFU file with specified IDs.",
+                    "Create empty DFU file with specified IDs",
                     new Options {
                         File = "sample.dfu",
                         Device = "0x5678",
