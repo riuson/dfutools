@@ -34,6 +34,8 @@ namespace DfuConvLib.Deserialization {
 
                 if (targetNamed != 0) {
                     targetName = reader.ReadString(255);
+                } else {
+                    reader.BaseStream.Position += 255;
                 }
 
                 var targetSize = reader.ReadUInt32();
