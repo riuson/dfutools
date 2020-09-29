@@ -1,11 +1,12 @@
 ﻿using CommandLine;
 using CommandLine.Text;
+using DfuConvCli.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuConvCli {
+namespace DfuConvCli.Tools.Show {
     [Verb("show", HelpText = "Show DFU contents.")]
-    internal class ShowOptions {
-        [Value(0)] public string InputFile { get; set; }
+    internal class Options : IVerbOptions {
+        [Value(0)] public string File { get; set; }
 
         [Option(
             'l',
@@ -18,14 +19,14 @@ namespace DfuConvCli {
         public static IEnumerable<Example> Examples =>
             new List<Example> {
                 new Example(
-                    "Show DFU content",
-                    new ShowOptions {
-                        InputFile = "sample.dfu"
+                    "Show DFU content.",
+                    new Options {
+                        File = "sample.dfu"
                     }),
                 new Example(
-                    "Show DFU content with specified amount of image element's data",
-                    new ShowOptions {
-                        InputFile = "sample.dfu",
+                    "Show DFU content with specified amount of image element's data.",
+                    new Options {
+                        File = "sample.dfu",
                         ElementDataLength = 8
                     })
             };
