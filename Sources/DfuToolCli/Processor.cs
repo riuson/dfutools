@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using CommandLine;
-using DfuConvCli.Interfaces;
-using DfuConvCli.Tools;
+using DfuToolCli.Interfaces;
+using DfuToolCli.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DfuConvCli {
+namespace DfuToolCli {
     internal class CommandsProcessor : IDisposable {
         private readonly IContainer _container;
 

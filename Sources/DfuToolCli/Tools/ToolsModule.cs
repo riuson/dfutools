@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using DfuConvCli.Interfaces;
+using DfuToolCli.Interfaces;
 using System.Reflection;
 using Module = Autofac.Module;
 
-namespace DfuConvCli.Tools {
+namespace DfuToolCli.Tools {
     public class ToolsModule : Module {
         protected override void Load(ContainerBuilder builder) {
             var currentAssembly = Assembly.GetExecutingAssembly();

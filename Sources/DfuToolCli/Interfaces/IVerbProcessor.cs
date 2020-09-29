@@ -1,4 +1,4 @@
-﻿namespace DfuConvCli.Interfaces {
+﻿namespace DfuToolCli.Interfaces {
     public interface IVerbProcessor {
         void Process(IVerbOptions options);
     }

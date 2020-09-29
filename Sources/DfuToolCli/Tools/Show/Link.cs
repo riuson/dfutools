@@ -1,7 +1,7 @@
-﻿using DfuConvCli.Interfaces;
+﻿using DfuToolCli.Interfaces;
 using System;
 
-namespace DfuConvCli.Tools.Show {
+namespace DfuToolCli.Tools.Show {
     internal class Link : ILink {
         private readonly Func<Processor> _createProcessor;
 

@@ -1,9 +1,9 @@
 ﻿using CommandLine;
 using CommandLine.Text;
-using DfuConvCli.Interfaces;
+using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuConvCli.Tools.Show {
+namespace DfuToolCli.Tools.Show {
     [Verb("show", HelpText = "Show DFU contents.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }
@@ -15,7 +15,7 @@ namespace DfuConvCli.Tools.Show {
             HelpText = "Length of element's data to display.")]
         public int ElementDataLength { get; set; }
 
-        [Usage(ApplicationAlias = "dfuconvcli")]
+        [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
             new List<Example> {
                 new Example(

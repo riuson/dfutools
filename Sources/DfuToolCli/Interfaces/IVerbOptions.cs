@@ -1,3 +1,3 @@
-﻿namespace DfuConvCli.Interfaces {
+﻿namespace DfuToolCli.Interfaces {
     public interface IVerbOptions { }
 }

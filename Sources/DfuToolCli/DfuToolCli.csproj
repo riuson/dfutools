@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <AssemblyTitle>Dfu Converter Command Line Utility</AssemblyTitle>
-        <AssemblyName>DfuConvCli</AssemblyName>
+        <AssemblyTitle>Dfu Tool Command Line Utility</AssemblyTitle>
+        <AssemblyName>DfuToolCli</AssemblyName>
         <RootNamespace>$(AssemblyName)</RootNamespace>
         <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
         <OutputType>Exe</OutputType>

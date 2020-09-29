@@ -1,9 +1,9 @@
 ﻿using CommandLine;
 using CommandLine.Text;
-using DfuConvCli.Interfaces;
+using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuConvCli.Tools.Create {
+namespace DfuToolCli.Tools.Create {
     [Verb("create", HelpText = "Create empty DFU.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }
@@ -32,7 +32,7 @@ namespace DfuConvCli.Tools.Create {
             HelpText = "Device's VEndor ID or 0xffff if ignored.")]
         public string Vendor { get; set; }
 
-        [Usage(ApplicationAlias = "dfuconvcli")]
+        [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
             new List<Example> {
                 new Example(

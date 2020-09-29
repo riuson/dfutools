@@ -1,10 +1,10 @@
-﻿using DfuConvCli.Helpers;
-using DfuConvCli.Interfaces;
-using DfuConvLib.Interfaces;
+﻿using DfuConvLib.Interfaces;
+using DfuToolCli.Helpers;
+using DfuToolCli.Interfaces;
 using System;
 using System.IO;
 
-namespace DfuConvCli.Tools.Create {
+namespace DfuToolCli.Tools.Create {
     internal class Processor : IVerbProcessor {
         private readonly Func<IDfu> _createDfu;
         private readonly Func<IDfuImages> _createDfuImages;

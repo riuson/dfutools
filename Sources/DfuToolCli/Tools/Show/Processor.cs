@@ -1,10 +1,10 @@
-﻿using DfuConvCli.Interfaces;
-using DfuConvLib.Interfaces;
+﻿using DfuConvLib.Interfaces;
+using DfuToolCli.Interfaces;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace DfuConvCli.Tools.Show {
+namespace DfuToolCli.Tools.Show {
     internal class Processor : IVerbProcessor {
         private readonly Func<IDfuDeserializer> _createDfuDeserializer;
 

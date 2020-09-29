@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace DfuConvCli.Helpers {
+namespace DfuToolCli.Helpers {
     public static class StringExtension {
         public static int ToInt32(this string str, int min = int.MinValue, int max = int.MaxValue) {
             if (str.ToLower().StartsWith("0x")) {
