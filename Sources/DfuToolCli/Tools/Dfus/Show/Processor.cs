@@ -64,7 +64,7 @@ namespace DfuToolCli.Tools.Dfus.Show {
                         "  Element's count: {5}{0}",
                         Environment.NewLine,
                         imageIndex,
-                        image.Prefix.AlternateSetting,
+                        image.Prefix.TargetId,
                         image.Prefix.IsTargetNamed ? image.Prefix.TargetName : "[none]",
                         image.Prefix.TargetSize,
                         image.Prefix.NbElements

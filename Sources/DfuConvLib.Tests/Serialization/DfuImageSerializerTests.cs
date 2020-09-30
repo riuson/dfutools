@@ -19,7 +19,7 @@ namespace DfuConvLib.Tests.Serialization {
             //targetPrefixMock.Setup(x => x.Write(It.IsAny<Stream>(), It.IsAny<IDfuImage>()))
             //    .Callback<Stream, IDfuImage>((s, i) => i.Write(s));
             targetPrefixMock.SetupGet(x => x.Signature).Returns("Target");
-            targetPrefixMock.SetupGet(x => x.AlternateSetting).Returns(7);
+            targetPrefixMock.SetupGet(x => x.TargetId).Returns(7);
             targetPrefixMock.SetupGet(x => x.IsTargetNamed).Returns(true);
             targetPrefixMock.SetupGet(x => x.TargetName).Returns(
                 string.Join("", Enumerable.Range(0, 50).Select(_ => "SAMPLE")));

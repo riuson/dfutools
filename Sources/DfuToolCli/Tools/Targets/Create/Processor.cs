@@ -45,7 +45,7 @@ namespace DfuToolCli.Tools.Targets.Create {
                 }
 
                 var usedIds = dfu.Images.Images
-                    .Select(x => x.Prefix.AlternateSetting)
+                    .Select(x => x.Prefix.TargetId)
                     .OrderBy(x => x)
                     .ToArray();
 
@@ -69,7 +69,7 @@ namespace DfuToolCli.Tools.Targets.Create {
                     }
                 }
 
-                targetPrefix.AlternateSetting = setTargetId;
+                targetPrefix.TargetId = setTargetId;
 
                 var dfuImage = this._createDfuImage();
                 dfuImage.Prefix = targetPrefix;

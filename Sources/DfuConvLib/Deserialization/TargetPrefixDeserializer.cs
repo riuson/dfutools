@@ -26,7 +26,7 @@ namespace DfuConvLib.Deserialization {
                         stream.Position - 6);
                 }
 
-                var alternateSetting = reader.ReadByte();
+                var targetId = reader.ReadByte();
 
                 var isTargetNamed = reader.ReadUInt32();
 
@@ -43,7 +43,7 @@ namespace DfuConvLib.Deserialization {
 
                 var targetPrefix = this._createTargetPrefix();
                 targetPrefix.Signature = signature;
-                targetPrefix.AlternateSetting = alternateSetting;
+                targetPrefix.TargetId = targetId;
                 targetPrefix.IsTargetNamed = isTargetNamed != 0;
                 targetPrefix.TargetName = targetName;
                 targetPrefix.TargetSize = targetSize;

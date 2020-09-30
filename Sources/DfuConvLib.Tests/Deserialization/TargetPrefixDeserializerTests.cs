@@ -44,7 +44,7 @@ namespace DfuConvLib.Tests.Deserialization {
 
             var targetPrefixMock = new Mock<ITargetPrefix>();
             targetPrefixMock.SetupProperty(x => x.Signature);
-            targetPrefixMock.SetupProperty(x => x.AlternateSetting);
+            targetPrefixMock.SetupProperty(x => x.TargetId);
             targetPrefixMock.SetupProperty(x => x.IsTargetNamed);
             targetPrefixMock.SetupProperty(x => x.TargetName);
             targetPrefixMock.SetupProperty(x => x.TargetSize);
@@ -57,7 +57,7 @@ namespace DfuConvLib.Tests.Deserialization {
             var targetPrefix = sut.Read(tempStream);
 
             Assert.That(targetPrefix.Signature, Is.EqualTo("Target"));
-            Assert.That(targetPrefix.AlternateSetting, Is.EqualTo(1));
+            Assert.That(targetPrefix.TargetId, Is.EqualTo(1));
             Assert.That(targetPrefix.IsTargetNamed, Is.True);
             Assert.That(targetPrefix.TargetName, Is.EqualTo("01234567890123456789"));
             Assert.That(targetPrefix.TargetSize, Is.EqualTo(0x12u));
@@ -100,7 +100,7 @@ namespace DfuConvLib.Tests.Deserialization {
 
             var targetPrefixMock = new Mock<ITargetPrefix>();
             targetPrefixMock.SetupProperty(x => x.Signature);
-            targetPrefixMock.SetupProperty(x => x.AlternateSetting);
+            targetPrefixMock.SetupProperty(x => x.TargetId);
             targetPrefixMock.SetupProperty(x => x.IsTargetNamed);
             targetPrefixMock.SetupProperty(x => x.TargetName);
             targetPrefixMock.SetupProperty(x => x.TargetSize);
@@ -113,7 +113,7 @@ namespace DfuConvLib.Tests.Deserialization {
             var targetPrefix = sut.Read(tempStream);
 
             Assert.That(targetPrefix.Signature, Is.EqualTo("Target"));
-            Assert.That(targetPrefix.AlternateSetting, Is.EqualTo(1));
+            Assert.That(targetPrefix.TargetId, Is.EqualTo(1));
             Assert.That(targetPrefix.IsTargetNamed, Is.False);
             Assert.That(targetPrefix.TargetName, Is.EqualTo(string.Empty));
             Assert.That(targetPrefix.TargetSize, Is.EqualTo(0x12u));

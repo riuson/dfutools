@@ -30,7 +30,7 @@ namespace DfuToolCli.Tools.Targets.Clear {
                 var dfu = dfuDeserializer.Read(stream);
 
                 if (targetId >= 0) {
-                    var image = dfu.Images.Images.FirstOrDefault(x => x.Prefix.AlternateSetting == targetId);
+                    var image = dfu.Images.Images.FirstOrDefault(x => x.Prefix.TargetId == targetId);
 
                     if (image != null) {
                         image.ImageElements.Clear();
