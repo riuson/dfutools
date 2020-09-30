@@ -26,6 +26,7 @@ namespace DfuToolCli {
         public void Process(string[] args) {
             var types = this.Resolve<IEnumerable<IVerbOptions>>()
                 .Select(x => x.GetType())
+                .OrderBy(x => x.FullName)
                 .ToArray();
             Parser.Default.ParseArguments(args, types)
                 .WithParsed(this.RunForType)
