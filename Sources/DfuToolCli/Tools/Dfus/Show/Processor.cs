@@ -65,7 +65,7 @@ namespace DfuToolCli.Tools.Dfus.Show {
                         Environment.NewLine,
                         imageIndex,
                         image.Prefix.AlternateSetting,
-                        image.Prefix.TargetNamed ? image.Prefix.TargetName : "[none]",
+                        image.Prefix.IsTargetNamed ? image.Prefix.TargetName : "[none]",
                         image.Prefix.TargetSize,
                         image.Prefix.NbElements
                     );

@@ -38,10 +38,10 @@ namespace DfuToolCli.Tools.Targets.Create {
 
                 if (string.IsNullOrEmpty(options.SetName)) {
                     targetPrefix.TargetName = string.Empty;
-                    targetPrefix.TargetNamed = false;
+                    targetPrefix.IsTargetNamed = false;
                 } else {
                     targetPrefix.TargetName = options.SetName;
-                    targetPrefix.TargetNamed = true;
+                    targetPrefix.IsTargetNamed = true;
                 }
 
                 var usedIds = dfu.Images.Images

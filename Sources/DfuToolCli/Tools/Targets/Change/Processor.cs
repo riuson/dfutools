@@ -36,10 +36,10 @@ namespace DfuToolCli.Tools.Targets.Change {
                 if (options.SetName != null) {
                     if (options.SetName != string.Empty) {
                         targetPrefix.TargetName = options.SetName;
-                        targetPrefix.TargetNamed = true;
+                        targetPrefix.IsTargetNamed = true;
                     } else {
                         targetPrefix.TargetName = string.Empty;
-                        targetPrefix.TargetNamed = false;
+                        targetPrefix.IsTargetNamed = false;
                     }
                 }
             }

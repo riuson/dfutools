@@ -25,7 +25,7 @@ namespace DfuConvLib.Tests.Serialization {
 
             var targetPrefix = new TargetPrefix {
                 AlternateSetting = 2,
-                TargetNamed = true,
+                IsTargetNamed = true,
                 TargetName = new string('Q', 256)
             };
 

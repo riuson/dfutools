@@ -16,10 +16,10 @@
         int AlternateSetting { get; set; }
 
         /// <summary>
-        /// The TargetNamed field is a boolean value which indicates if the target is named or
+        /// The IsTargetNamed field is a boolean value which indicates if the target is named or
         /// not.
         /// </summary>
-        bool TargetNamed { get; set; }
+        bool IsTargetNamed { get; set; }
 
         /// <summary>
         /// The TargetName field gives the target name.
