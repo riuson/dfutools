@@ -11,7 +11,7 @@ namespace DfuToolCli.Tools.Targets.Clear {
         [Option(
             "id",
             SetName = "ById",
-            Required = false,
+            Required = true,
             Default = "",
             HelpText = "Alternate Setting (Target ID) to clear.")]
         public string Id { get; set; }
@@ -19,7 +19,7 @@ namespace DfuToolCli.Tools.Targets.Clear {
         [Option(
             "index",
             SetName = "ByIndex",
-            Required = false,
+            Required = true,
             Default = "",
             HelpText = "Alternate Setting's (Target ID) index to clear.")]
         public string Index { get; set; }
