@@ -28,9 +28,9 @@ namespace DfuToolCli.Tools.Dfus.Change {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
-            var device = options.Device == string.Empty ? -1 : options.Device.ToInt32(0, 0xffff);
-            var product = options.Product == string.Empty ? -1 : options.Product.ToInt32(0, 0xffff);
-            var vendor = options.Vendor == string.Empty ? -1 : options.Vendor.ToInt32(0, 0xffff);
+            var device = options.SetDevice == string.Empty ? -1 : options.SetDevice.ToInt32(0, 0xffff);
+            var product = options.SetProduct == string.Empty ? -1 : options.SetProduct.ToInt32(0, 0xffff);
+            var vendor = options.SetVendor == string.Empty ? -1 : options.SetVendor.ToInt32(0, 0xffff);
 
             var dfuSerializer = this._createDfuSerializer();
 

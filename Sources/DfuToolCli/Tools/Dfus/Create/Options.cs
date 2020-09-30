@@ -10,27 +10,27 @@ namespace DfuToolCli.Tools.Dfus.Create {
 
         [Option(
             'd',
-            "device",
+            "set-device",
             Required = true,
             Default = "0xffff",
             HelpText = "Firmware version contained in the file, or 0xffff if ignored.")]
-        public string Device { get; set; }
+        public string SetDevice { get; set; }
 
         [Option(
             'p',
-            "product",
+            "set-product",
             Required = true,
             Default = "0xffff",
             HelpText = "Device's Product ID or 0xffff if ignored.")]
-        public string Product { get; set; }
+        public string SetProduct { get; set; }
 
         [Option(
             'v',
-            "vendor",
+            "set-vendor",
             Required = true,
             Default = "0xffff",
             HelpText = "Device's VEndor ID or 0xffff if ignored.")]
-        public string Vendor { get; set; }
+        public string SetVendor { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -44,9 +44,9 @@ namespace DfuToolCli.Tools.Dfus.Create {
                     "Create empty DFU file with specified IDs",
                     new Options {
                         File = "sample.dfu",
-                        Device = "0x5678",
-                        Product = "0x1234",
-                        Vendor = "0x0483"
+                        SetDevice = "0x5678",
+                        SetProduct = "0x1234",
+                        SetVendor = "0x0483"
                     })
             };
     }

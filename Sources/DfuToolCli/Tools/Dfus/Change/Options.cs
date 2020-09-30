@@ -10,27 +10,27 @@ namespace DfuToolCli.Tools.Dfus.Change {
 
         [Option(
             'd',
-            "device",
+            "set-device",
             Required = false,
             Default = "",
             HelpText = "New firmware version.")]
-        public string Device { get; set; }
+        public string SetDevice { get; set; }
 
         [Option(
             'p',
-            "product",
+            "set-product",
             Required = false,
             Default = "",
             HelpText = "New device's Product ID.")]
-        public string Product { get; set; }
+        public string SetProduct { get; set; }
 
         [Option(
             'v',
-            "vendor",
+            "set-vendor",
             Required = false,
             Default = "",
             HelpText = "New device's VEndor ID.")]
-        public string Vendor { get; set; }
+        public string SetVendor { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -39,7 +39,7 @@ namespace DfuToolCli.Tools.Dfus.Change {
                     "Change Product ID of DFU file",
                     new Options {
                         File = "sample.dfu",
-                        Product = "0x1234"
+                        SetProduct = "0x1234"
                     })
             };
     }

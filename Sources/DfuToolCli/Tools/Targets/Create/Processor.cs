@@ -26,7 +26,7 @@ namespace DfuToolCli.Tools.Targets.Create {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
-            var targetId = string.IsNullOrEmpty(options.Id) ? -1 : options.Id.ToInt32(0, 255);
+            var setTargetId = string.IsNullOrEmpty(options.SetId) ? -1 : options.SetId.ToInt32(0, 255);
 
             var dfuSerializer = this._createDfuSerializer();
             var dfuDeserializer = this._createDfuDeserializer();
@@ -36,11 +36,11 @@ namespace DfuToolCli.Tools.Targets.Create {
 
                 var targetPrefix = this._createTargetPrefix();
 
-                if (string.IsNullOrEmpty(options.Name)) {
+                if (string.IsNullOrEmpty(options.SetName)) {
                     targetPrefix.TargetName = string.Empty;
                     targetPrefix.TargetNamed = false;
                 } else {
-                    targetPrefix.TargetName = options.Name;
+                    targetPrefix.TargetName = options.SetName;
                     targetPrefix.TargetNamed = true;
                 }
 
@@ -61,15 +61,15 @@ namespace DfuToolCli.Tools.Targets.Create {
                     throw new ArgumentException("There is no available Target IDs in this DFU.");
                 }
 
-                if (targetId == -1) {
-                    targetId = availableIds.First();
+                if (setTargetId == -1) {
+                    setTargetId = availableIds.First();
                 } else {
-                    if (!availableIds.Contains(targetId)) {
+                    if (!availableIds.Contains(setTargetId)) {
                         throw new ArgumentException("Specified Target ID is exists already in this DFU.");
                     }
                 }
 
-                targetPrefix.AlternateSetting = targetId;
+                targetPrefix.AlternateSetting = setTargetId;
 
                 var dfuImage = this._createDfuImage();
                 dfuImage.Prefix = targetPrefix;

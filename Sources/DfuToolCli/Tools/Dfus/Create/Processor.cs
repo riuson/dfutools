@@ -28,9 +28,9 @@ namespace DfuToolCli.Tools.Dfus.Create {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
-            var device = options.Device.ToInt32(0, 0xffff);
-            var product = options.Product.ToInt32(0, 0xffff);
-            var vendor = options.Vendor.ToInt32(0, 0xffff);
+            var device = options.SetDevice.ToInt32(0, 0xffff);
+            var product = options.SetProduct.ToInt32(0, 0xffff);
+            var vendor = options.SetVendor.ToInt32(0, 0xffff);
 
             var dfuSerializer = this._createDfuSerializer();
 
