@@ -11,7 +11,7 @@ namespace DfuToolCli.Tools.Targets.Create {
         [Option(
             "set-name",
             Required = false,
-            Default = "",
+            Default = null,
             HelpText = "Target name (0...255 ASCII characters).")]
         public string SetName { get; set; }
 
