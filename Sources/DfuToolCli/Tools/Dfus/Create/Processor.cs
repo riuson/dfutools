@@ -28,26 +28,27 @@ namespace DfuToolCli.Tools.Dfus.Create {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
-            var device = options.SetDevice.ToInt32(0, 0xffff);
-            var product = options.SetProduct.ToInt32(0, 0xffff);
-            var vendor = options.SetVendor.ToInt32(0, 0xffff);
-
-            var dfuSerializer = this._createDfuSerializer();
+            var setDevice = options.SetDevice.ToInt32(0, 0xffff);
+            var setProduct = options.SetProduct.ToInt32(0, 0xffff);
+            var setVendor = options.SetVendor.ToInt32(0, 0xffff);
 
             using (var stream = new FileStream(options.File, FileMode.Create, FileAccess.ReadWrite)) {
-                var dfu = this._createDfu();
-
-                dfu.Prefix = this._createDfuPrefix();
-
-                dfu.Images = this._createDfuImages();
-
-                dfu.Suffix = this._createDfuSuffix();
-                dfu.Suffix.Device = device;
-                dfu.Suffix.Product = product;
-                dfu.Suffix.Vendor = vendor;
-
-                dfuSerializer.Write(stream, dfu);
+                this.ProcessInternal(stream, setDevice, setProduct, setVendor);
             }
+        }
+
+        internal void ProcessInternal(Stream stream, int setDevice, int setProduct, int setVendor) {
+            var dfuSerializer = this._createDfuSerializer();
+            var dfu = this._createDfu();
+
+            dfu.Prefix = this._createDfuPrefix();
+            dfu.Images = this._createDfuImages();
+            dfu.Suffix = this._createDfuSuffix();
+            dfu.Suffix.Device = setDevice;
+            dfu.Suffix.Product = setProduct;
+            dfu.Suffix.Vendor = setVendor;
+
+            dfuSerializer.Write(stream, dfu);
         }
     }
 }
