@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System;
 using System.IO;
 
-namespace DfuToolCli.Tests.Tools.Create {
+namespace DfuToolCli.Tests.Tools.Dfus.Create {
     [TestFixture]
     public class ProcessorTests : BaseTestFixture {
         [Test]
