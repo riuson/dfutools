@@ -18,18 +18,21 @@ namespace DfuToolCli.Tools.Dfus.Clear {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
+            using (var stream = new FileStream(options.File, FileMode.Open, FileAccess.ReadWrite)) {
+                this.ProcessInternal(stream);
+            }
+        }
+
+        internal void ProcessInternal(Stream stream) {
             var dfuDeserializer = this._createDfuDeserializer();
             var dfuSerializer = this._createDfuSerializer();
+            var dfu = dfuDeserializer.Read(stream);
+            dfu.Images.Images.Clear();
 
-            using (var stream = new FileStream(options.File, FileMode.Open, FileAccess.ReadWrite)) {
-                var dfu = dfuDeserializer.Read(stream);
-                dfu.Images.Images.Clear();
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.SetLength(0);
 
-                stream.Seek(0, SeekOrigin.Begin);
-                stream.SetLength(0);
-
-                dfuSerializer.Write(stream, dfu);
-            }
+            dfuSerializer.Write(stream, dfu);
         }
     }
 }
