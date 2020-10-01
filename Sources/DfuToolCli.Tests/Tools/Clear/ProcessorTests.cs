@@ -1,4 +1,5 @@
 ﻿using DfuConvLib.Helpers;
+using DfuToolCli.Tests.Helpers;
 using DfuToolCli.Tools.Dfus.Clear;
 using NUnit.Framework;
 using System;
@@ -134,20 +135,10 @@ namespace DfuToolCli.Tests.Tools.Clear {
             };
 
             length = expected.Length - 16;
-            Array.Copy(
-                BitConverter.GetBytes(length),
-                0,
-                expected,
-                6,
-                4);
+            expected.WriteInteger(6, Convert.ToUInt32(length));
 
             crc32 = Crc32.ComputeAll(expected, 0, Convert.ToUInt32(expected.Length - 4));
-            Array.Copy(
-                BitConverter.GetBytes(crc32 ^ 0xffffffffu),
-                0,
-                expected,
-                expected.Length - 4,
-                4);
+            expected.WriteInteger(expected.Length - 4, crc32 ^ 0xffffffffu);
 
 
             // Test.
