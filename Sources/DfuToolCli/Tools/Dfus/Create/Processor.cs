@@ -38,7 +38,6 @@ namespace DfuToolCli.Tools.Dfus.Create {
         }
 
         internal void ProcessInternal(Stream stream, int setDevice, int setProduct, int setVendor) {
-            var dfuSerializer = this._createDfuSerializer();
             var dfu = this._createDfu();
 
             dfu.Prefix = this._createDfuPrefix();
@@ -48,6 +47,7 @@ namespace DfuToolCli.Tools.Dfus.Create {
             dfu.Suffix.Product = setProduct;
             dfu.Suffix.Vendor = setVendor;
 
+            var dfuSerializer = this._createDfuSerializer();
             dfuSerializer.Write(stream, dfu);
         }
     }

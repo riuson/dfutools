@@ -25,13 +25,13 @@ namespace DfuToolCli.Tools.Dfus.Clear {
 
         internal void ProcessInternal(Stream stream) {
             var dfuDeserializer = this._createDfuDeserializer();
-            var dfuSerializer = this._createDfuSerializer();
             var dfu = dfuDeserializer.Read(stream);
             dfu.Images.Images.Clear();
 
             stream.Seek(0, SeekOrigin.Begin);
             stream.SetLength(0);
 
+            var dfuSerializer = this._createDfuSerializer();
             dfuSerializer.Write(stream, dfu);
         }
     }

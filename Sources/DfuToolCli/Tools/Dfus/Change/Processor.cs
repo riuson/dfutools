@@ -35,7 +35,7 @@ namespace DfuToolCli.Tools.Dfus.Change {
             var setProduct = options.SetProduct == string.Empty ? -1 : options.SetProduct.ToInt32(0, 0xffff);
             var setVendor = options.SetVendor == string.Empty ? -1 : options.SetVendor.ToInt32(0, 0xffff);
 
-            using (var stream = new FileStream(options.File, FileMode.Create, FileAccess.ReadWrite)) {
+            using (var stream = new FileStream(options.File, FileMode.Open, FileAccess.ReadWrite)) {
                 this.ProcessInternal(stream, setDevice, setProduct, setVendor);
             }
         }
@@ -43,12 +43,6 @@ namespace DfuToolCli.Tools.Dfus.Change {
         internal void ProcessInternal(Stream stream, int setDevice, int setProduct, int setVendor) {
             var dfuDeserializer = this._createDfuDeserializer();
             var dfu = dfuDeserializer.Read(stream);
-
-            dfu.Prefix = this._createDfuPrefix();
-
-            dfu.Images = this._createDfuImages();
-
-            dfu.Suffix = this._createDfuSuffix();
 
             if (setDevice >= 0) {
                 dfu.Suffix.Device = setDevice;
@@ -62,9 +56,10 @@ namespace DfuToolCli.Tools.Dfus.Change {
                 dfu.Suffix.Vendor = setVendor;
             }
 
-            var dfuSerializer = this._createDfuSerializer();
             stream.Seek(0, SeekOrigin.Begin);
             stream.SetLength(0);
+
+            var dfuSerializer = this._createDfuSerializer();
             dfuSerializer.Write(stream, dfu);
         }
     }

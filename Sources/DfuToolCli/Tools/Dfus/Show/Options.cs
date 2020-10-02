@@ -4,12 +4,11 @@ using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
 namespace DfuToolCli.Tools.Dfus.Show {
-    [Verb("show", HelpText = "Show DFU contents.")]
+    [Verb("dfu-show", HelpText = "Show DFU contents.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }
 
         [Option(
-            'l',
             "data-length",
             Default = 16,
             HelpText = "Length of element's data to display.")]

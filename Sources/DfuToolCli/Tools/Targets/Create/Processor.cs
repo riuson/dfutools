@@ -26,26 +26,25 @@ namespace DfuToolCli.Tools.Targets.Create {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
-            var setId = string.IsNullOrEmpty(options.SetId) ? -1 : options.SetId.ToInt32(0, 255);
-            var setName = options.SetName;
+            var setTargetId = string.IsNullOrEmpty(options.SetTargetId) ? -1 : options.SetTargetId.ToInt32(0, 255);
+            var setTargetName = options.SetTargetName;
 
             using (var stream = new FileStream(options.File, FileMode.Open, FileAccess.ReadWrite)) {
-                this.ProcessInternal(stream, setId, setName);
+                this.ProcessInternal(stream, setTargetId, setTargetName);
             }
         }
 
-        internal void ProcessInternal(Stream stream, int setId, string setName) {
-            var dfuSerializer = this._createDfuSerializer();
+        internal void ProcessInternal(Stream stream, int setTargetId, string setTargetName) {
             var dfuDeserializer = this._createDfuDeserializer();
             var dfu = dfuDeserializer.Read(stream);
 
             var targetPrefix = this._createTargetPrefix();
 
-            if (setName == null) {
+            if (setTargetName == null) {
                 targetPrefix.TargetName = string.Empty;
                 targetPrefix.IsTargetNamed = false;
             } else {
-                targetPrefix.TargetName = setName;
+                targetPrefix.TargetName = setTargetName;
                 targetPrefix.IsTargetNamed = true;
             }
 
@@ -66,15 +65,15 @@ namespace DfuToolCli.Tools.Targets.Create {
                 throw new ArgumentException("There is no available Target IDs in this DFU.");
             }
 
-            if (setId == -1) {
-                setId = availableIds.First();
+            if (setTargetId == -1) {
+                setTargetId = availableIds.First();
             } else {
-                if (!availableIds.Contains(setId)) {
+                if (!availableIds.Contains(setTargetId)) {
                     throw new ArgumentException("Specified Target ID is exists already in this DFU.");
                 }
             }
 
-            targetPrefix.TargetId = setId;
+            targetPrefix.TargetId = setTargetId;
 
             var dfuImage = this._createDfuImage();
             dfuImage.Prefix = targetPrefix;
@@ -85,6 +84,7 @@ namespace DfuToolCli.Tools.Targets.Create {
             stream.Seek(0, SeekOrigin.Begin);
             stream.SetLength(0);
 
+            var dfuSerializer = this._createDfuSerializer();
             dfuSerializer.Write(stream, dfu);
         }
     }

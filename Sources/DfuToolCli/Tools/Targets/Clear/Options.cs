@@ -10,19 +10,10 @@ namespace DfuToolCli.Tools.Targets.Clear {
 
         [Option(
             "id",
-            SetName = "ById",
             Required = true,
             Default = "",
-            HelpText = "Alternate Setting (Target ID) to clear.")]
-        public string Id { get; set; }
-
-        [Option(
-            "index",
-            SetName = "ByIndex",
-            Required = true,
-            Default = "",
-            HelpText = "Alternate Setting's (Target ID) index to clear.")]
-        public string Index { get; set; }
+            HelpText = "ID of target to clear image elements.")]
+        public string TargetId { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -31,13 +22,7 @@ namespace DfuToolCli.Tools.Targets.Clear {
                     "Remove all image elements from target by ID",
                     new Options {
                         File = "sample.dfu",
-                        Id = "1"
-                    }),
-                new Example(
-                    "Remove all image elements from target by index",
-                    new Options {
-                        File = "sample.dfu",
-                        Index = "1"
+                        TargetId = "1"
                     })
             };
     }

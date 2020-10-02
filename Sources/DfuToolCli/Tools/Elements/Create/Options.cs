@@ -13,21 +13,21 @@ namespace DfuToolCli.Tools.Elements.Create {
             Required = true,
             Default = "",
             HelpText = "ID of target to add image element.")]
-        public string Id { get; set; }
+        public string TargetId { get; set; }
 
         [Option(
-            "content",
+            "set-content",
             Required = true,
             Default = "",
             HelpText = "Path to file with new image element's content")]
-        public string ElementFile { get; set; }
+        public string SetElementFile { get; set; }
 
         [Option(
-            "address",
+            "set-address",
             Required = true,
             Default = "0xffffffff",
             HelpText = "Address of image element.")]
-        public string ElementAddress { get; set; }
+        public string SetElementAddress { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -36,9 +36,9 @@ namespace DfuToolCli.Tools.Elements.Create {
                     "Add new image element to target by ID",
                     new Options {
                         File = "sample.dfu",
-                        Id = "1",
-                        ElementFile = "element.bin",
-                        ElementAddress = "0x08000000"
+                        TargetId = "1",
+                        SetElementFile = "element.bin",
+                        SetElementAddress = "0x08000000"
                     })
             };
     }

@@ -20,26 +20,25 @@ namespace DfuToolCli.Tools.Targets.Change {
         public void Process(IVerbOptions obj) {
             var options = obj as Options;
 
-            var id = string.IsNullOrEmpty(options.Id) ? -1 : options.Id.ToInt32(0, 255);
-            var index = string.IsNullOrEmpty(options.Index) ? -1 : options.Index.ToInt32(0, 255);
+            var targetId = string.IsNullOrEmpty(options.TargetId) ? -1 : options.TargetId.ToInt32(0, 255);
 
-            var setId = string.IsNullOrEmpty(options.SetId) ? -1 : options.SetId.ToInt32(0, 255);
-            var setName = options.SetName;
+            var setTargetId = string.IsNullOrEmpty(options.SetTargetId) ? -1 : options.SetTargetId.ToInt32(0, 255);
+            var setTargetName = options.SetTargetName;
 
             using (var stream = new FileStream(options.File, FileMode.Open, FileAccess.ReadWrite)) {
-                this.ProcessInternal(stream, id, index, setId, setName);
+                this.ProcessInternal(stream, targetId, setTargetId, setTargetName);
             }
         }
 
-        internal void ProcessInternal(Stream stream, int id, int index, int setId, string setName) {
+        internal void ProcessInternal(Stream stream, int targetId, int setTargetId, string setTargetName) {
             void updateIds(ITargetPrefix targetPrefix) {
-                if (setId >= 0) {
-                    targetPrefix.TargetId = setId;
+                if (setTargetId >= 0) {
+                    targetPrefix.TargetId = setTargetId;
                 }
 
-                if (setName != null) {
-                    if (setName != string.Empty) {
-                        targetPrefix.TargetName = setName;
+                if (setTargetName != null) {
+                    if (setTargetName != string.Empty) {
+                        targetPrefix.TargetName = setTargetName;
                         targetPrefix.IsTargetNamed = true;
                     } else {
                         targetPrefix.TargetName = string.Empty;
@@ -48,31 +47,23 @@ namespace DfuToolCli.Tools.Targets.Change {
                 }
             }
 
-            var dfuSerializer = this._createDfuSerializer();
             var dfuDeserializer = this._createDfuDeserializer();
-
             var dfu = dfuDeserializer.Read(stream);
 
-            if (id >= 0) {
-                var image = dfu.Images.Images.FirstOrDefault(x => x.Prefix.TargetId == id);
+            if (targetId >= 0) {
+                var image = dfu.Images.Images.FirstOrDefault(x => x.Prefix.TargetId == targetId);
 
                 if (image != null) {
                     updateIds(image.Prefix);
                 } else {
-                    throw new ArgumentException($"Target with ID = {id} was not found!");
-                }
-            } else if (index >= 0) {
-                if (index < dfu.Images.Images.Count) {
-                    updateIds(dfu.Images.Images[index].Prefix);
-                } else {
-                    throw new IndexOutOfRangeException(
-                        $"Target with index == {index} not found in list of size {dfu.Images.Images.Count}!");
+                    throw new ArgumentException($"Target with ID = {targetId} was not found!");
                 }
             }
 
             stream.Seek(0, SeekOrigin.Begin);
             stream.SetLength(0);
 
+            var dfuSerializer = this._createDfuSerializer();
             dfuSerializer.Write(stream, dfu);
         }
     }

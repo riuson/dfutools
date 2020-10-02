@@ -12,15 +12,15 @@ namespace DfuToolCli.Tools.Targets.Create {
             "set-name",
             Required = false,
             Default = null,
-            HelpText = "Target name (0...255 ASCII characters).")]
-        public string SetName { get; set; }
+            HelpText = "Target's Name (0...255 ASCII characters).")]
+        public string SetTargetName { get; set; }
 
         [Option(
             "set-id",
             Required = false,
-            Default = "",
-            HelpText = "Alternate Setting (Target ID).")]
-        public string SetId { get; set; }
+            Default = null,
+            HelpText = "Target's ID.")]
+        public string SetTargetId { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -34,8 +34,8 @@ namespace DfuToolCli.Tools.Targets.Create {
                     "Create new target with specified Name and ID",
                     new Options {
                         File = "sample.dfu",
-                        SetName = "Application",
-                        SetId = "1"
+                        SetTargetName = "Application",
+                        SetTargetId = "1"
                     })
             };
     }

@@ -24,40 +24,14 @@ namespace DfuToolCli.Tools.Elements.Remove {
             var options = obj as Options;
 
             var targetId = string.IsNullOrEmpty(options.TargetId) ? -1 : options.TargetId.ToInt32(0, 255);
-            var targetIndex = string.IsNullOrEmpty(options.Index) ? -1 : options.Index.ToInt32(0, 255);
-
-            var dfuSerializer = this._createDfuSerializer();
-            var dfuDeserializer = this._createDfuDeserializer();
+            var elementIndex = string.IsNullOrEmpty(options.ElementIndex) ? -1 : options.ElementIndex.ToInt32(0, 255);
 
             using (var stream = new FileStream(options.File, FileMode.Open, FileAccess.ReadWrite)) {
-                var dfu = dfuDeserializer.Read(stream);
-
-                if (targetId >= 0) {
-                    var image = dfu.Images.Images.FirstOrDefault(x => x.Prefix.TargetId == targetId);
-
-                    if (image != null) {
-                        image.ImageElements.Clear();
-                    } else {
-                        throw new ArgumentException($"Target with ID = {targetId} was not found!");
-                    }
-                } else if (targetIndex >= 0) {
-                    if (targetIndex < dfu.Images.Images.Count) {
-                        dfu.Images.Images[targetIndex].ImageElements.Clear();
-                    } else {
-                        throw new IndexOutOfRangeException(
-                            $"Target with index == {targetIndex} not found in list of size {dfu.Images.Images.Count}!");
-                    }
-                }
-
-                stream.Seek(0, SeekOrigin.Begin);
-                stream.SetLength(0);
-
-                dfuSerializer.Write(stream, dfu);
+                this.ProcessInternal(stream, targetId, elementIndex);
             }
         }
 
         internal void ProcessInternal(Stream dfuStream, int targetId, int elementIndex) {
-            var dfuSerializer = this._createDfuSerializer();
             var dfuDeserializer = this._createDfuDeserializer();
 
             var dfu = dfuDeserializer.Read(dfuStream);
@@ -84,6 +58,8 @@ namespace DfuToolCli.Tools.Elements.Remove {
 
             dfuStream.Seek(0, SeekOrigin.Begin);
             dfuStream.SetLength(0);
+
+            var dfuSerializer = this._createDfuSerializer();
             dfuSerializer.Write(dfuStream, dfu);
         }
     }

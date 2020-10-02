@@ -9,7 +9,7 @@ namespace DfuToolCli.Tests.Tools.Targets.Create {
     [TestFixture]
     public class ProcessorTests : BaseTestFixture {
         [Test]
-        public void CanProcessInternalAutoId() {
+        public void CanTargetCreateAutoId() {
             // Sample.
             var sample = new byte[] {
                 0x44, 0x66, 0x75, 0x53, 0x65,
@@ -270,7 +270,7 @@ namespace DfuToolCli.Tests.Tools.Targets.Create {
         }
 
         [Test]
-        public void CanProcessInternalSpecificId() {
+        public void CanTargetCreateSpecificId() {
             // Sample.
             var sample = new byte[] {
                 0x44, 0x66, 0x75, 0x53, 0x65,

@@ -57,8 +57,8 @@ namespace DfuToolCli.Tools.Dfus.Show {
                 for (var imageIndex = 0; imageIndex < dfu.Images.Images.Count; imageIndex++) {
                     var image = dfu.Images.Images[imageIndex];
                     msg = string.Format(
-                        "Image [{1}]:{0}" +
-                        "  Alternate Setting (Target ID): {2}{0}" +
+                        "Target [{1}]:{0}" +
+                        "  Target ID: {2}{0}" +
                         "  Target Name: {3}{0}" +
                         "  Target Size: {4}{0}" +
                         "  Element's count: {5}{0}",

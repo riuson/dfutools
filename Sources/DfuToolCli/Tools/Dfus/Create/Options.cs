@@ -4,20 +4,18 @@ using DfuToolCli.Interfaces;
 using System.Collections.Generic;
 
 namespace DfuToolCli.Tools.Dfus.Create {
-    [Verb("create", HelpText = "Create empty DFU.")]
+    [Verb("dfu-create", HelpText = "Create empty DFU.")]
     internal class Options : IVerbOptions {
         [Value(0)] public string File { get; set; }
 
         [Option(
-            'd',
             "set-device",
             Required = true,
             Default = "0xffff",
-            HelpText = "Firmware version contained in the file, or 0xffff if ignored.")]
+            HelpText = "Firmware version or 0xffff if ignored.")]
         public string SetDevice { get; set; }
 
         [Option(
-            'p',
             "set-product",
             Required = true,
             Default = "0xffff",
@@ -25,11 +23,10 @@ namespace DfuToolCli.Tools.Dfus.Create {
         public string SetProduct { get; set; }
 
         [Option(
-            'v',
             "set-vendor",
             Required = true,
             Default = "0xffff",
-            HelpText = "Device's VEndor ID or 0xffff if ignored.")]
+            HelpText = "Device's Vendor ID or 0xffff if ignored.")]
         public string SetVendor { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]

@@ -9,7 +9,7 @@ namespace DfuToolCli.Tests.Tools.Elements.Remove {
     [TestFixture]
     public class ProcessorTests : BaseTestFixture {
         [Test]
-        public void CanCreateElementBinaryById() {
+        public void CanElementRemove() {
             // Sample.
             var sample = new byte[] {
                 0x44, 0x66, 0x75, 0x53, 0x65,

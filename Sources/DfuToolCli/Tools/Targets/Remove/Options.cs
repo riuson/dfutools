@@ -10,19 +10,10 @@ namespace DfuToolCli.Tools.Targets.Remove {
 
         [Option(
             "id",
-            SetName = "ById",
             Required = false,
             Default = "",
-            HelpText = "Alternate Setting (Target ID) to remove.")]
-        public string Id { get; set; }
-
-        [Option(
-            "index",
-            SetName = "ByIndex",
-            Required = false,
-            Default = "",
-            HelpText = "Alternate Setting's (Target ID) index to remove.")]
-        public string Index { get; set; }
+            HelpText = "ID of target to remove.")]
+        public string TargetId { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -31,13 +22,7 @@ namespace DfuToolCli.Tools.Targets.Remove {
                     "Remove target by ID",
                     new Options {
                         File = "sample.dfu",
-                        Id = "1"
-                    }),
-                new Example(
-                    "Remove target by index",
-                    new Options {
-                        File = "sample.dfu",
-                        Index = "1"
+                        TargetId = "1"
                     })
             };
     }

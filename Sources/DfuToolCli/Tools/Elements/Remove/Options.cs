@@ -20,7 +20,7 @@ namespace DfuToolCli.Tools.Elements.Remove {
             Required = true,
             Default = "",
             HelpText = "Index of image element to remove.")]
-        public string Index { get; set; }
+        public string ElementIndex { get; set; }
 
         [Usage(ApplicationAlias = "dfutoolcli")]
         public static IEnumerable<Example> Examples =>
@@ -30,7 +30,7 @@ namespace DfuToolCli.Tools.Elements.Remove {
                     new Options {
                         File = "sample.dfu",
                         TargetId = "1",
-                        Index = "0"
+                        ElementIndex = "0"
                     })
             };
     }
