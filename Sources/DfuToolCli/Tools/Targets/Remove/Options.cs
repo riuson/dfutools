@@ -11,7 +11,6 @@ namespace DfuToolCli.Tools.Targets.Remove {
         [Option(
             "id",
             Required = false,
-            Default = "",
             HelpText = "ID of target to remove.")]
         public string TargetId { get; set; }
 

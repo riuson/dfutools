@@ -11,21 +11,18 @@ namespace DfuToolCli.Tools.Dfus.Change {
         [Option(
             "set-device",
             Required = false,
-            Default = "",
             HelpText = "New firmware version.")]
         public string SetDevice { get; set; }
 
         [Option(
             "set-product",
             Required = false,
-            Default = "",
             HelpText = "New Product ID of device.")]
         public string SetProduct { get; set; }
 
         [Option(
             "set-vendor",
             Required = false,
-            Default = "",
             HelpText = "New Vendor ID of device.")]
         public string SetVendor { get; set; }
 

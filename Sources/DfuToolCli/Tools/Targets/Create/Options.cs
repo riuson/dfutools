@@ -11,14 +11,12 @@ namespace DfuToolCli.Tools.Targets.Create {
         [Option(
             "set-name",
             Required = false,
-            Default = null,
             HelpText = "Target's Name (0...255 ASCII characters).")]
         public string SetTargetName { get; set; }
 
         [Option(
             "set-id",
             Required = false,
-            Default = null,
             HelpText = "Target's ID.")]
         public string SetTargetId { get; set; }
 

@@ -11,14 +11,12 @@ namespace DfuToolCli.Tools.Elements.Create {
         [Option(
             "id",
             Required = true,
-            Default = "",
             HelpText = "ID of target to add image element.")]
         public string TargetId { get; set; }
 
         [Option(
             "set-content",
             Required = true,
-            Default = "",
             HelpText = "Path to file with new image element's content")]
         public string SetElementFile { get; set; }
 

@@ -11,14 +11,12 @@ namespace DfuToolCli.Tools.Elements.Remove {
         [Option(
             "id",
             Required = true,
-            Default = "",
             HelpText = "Target ID to remove image element.")]
         public string TargetId { get; set; }
 
         [Option(
             "index",
             Required = true,
-            Default = "",
             HelpText = "Index of image element to remove.")]
         public string ElementIndex { get; set; }
 

@@ -11,21 +11,18 @@ namespace DfuToolCli.Tools.Targets.Change {
         [Option(
             "id",
             Required = true,
-            Default = "",
             HelpText = "ID of target to change.")]
         public string TargetId { get; set; }
 
         [Option(
             "set-name",
             Required = false,
-            Default = null,
             HelpText = "New target's Name (0...255 ASCII characters).")]
         public string SetTargetName { get; set; }
 
         [Option(
             "set-id",
             Required = false,
-            Default = "",
             HelpText = "New target's ID.")]
         public string SetTargetId { get; set; }
 

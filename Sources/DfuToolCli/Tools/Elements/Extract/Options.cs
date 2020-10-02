@@ -11,21 +11,18 @@ namespace DfuToolCli.Tools.Elements.Extract {
         [Option(
             "id",
             Required = true,
-            Default = "",
             HelpText = "Target ID to extract image element from it.")]
         public string TargetId { get; set; }
 
         [Option(
             "index",
             Required = true,
-            Default = "",
             HelpText = "Index of image element to extract.")]
         public string ElementIndex { get; set; }
 
         [Option(
             "output-file",
             Required = true,
-            Default = "",
             HelpText = "Index of image element to extract.")]
         public string OutputFile { get; set; }
 

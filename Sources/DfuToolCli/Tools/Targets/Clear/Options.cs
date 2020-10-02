@@ -11,7 +11,6 @@ namespace DfuToolCli.Tools.Targets.Clear {
         [Option(
             "id",
             Required = true,
-            Default = "",
             HelpText = "ID of target to clear image elements.")]
         public string TargetId { get; set; }
 
