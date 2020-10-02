@@ -42,8 +42,8 @@ namespace DfuConvLib.Tests.Serialization {
 
             var targetPrefixMock = new Mock<ITargetPrefix>();
             targetPrefixMock.SetupGet(x => x.Signature).Returns("0123456789");
-            targetPrefixMock.SetupGet(x => x.AlternateSetting).Returns(1);
-            targetPrefixMock.SetupGet(x => x.TargetNamed).Returns(true);
+            targetPrefixMock.SetupGet(x => x.TargetId).Returns(1);
+            targetPrefixMock.SetupGet(x => x.IsTargetNamed).Returns(true);
             targetPrefixMock.SetupGet(x => x.TargetName).Returns("01234567890123456789");
 
             var dfuImageMock = new Mock<IDfuImage>();

@@ -77,9 +77,9 @@ namespace DfuConvLib.Tests.Deserialization {
 
             var dfuImage = dfu.Images.Images.First();
             var targetPrefix = dfuImage.Prefix;
-            Assert.That(targetPrefix.AlternateSetting, Is.EqualTo(2));
+            Assert.That(targetPrefix.TargetId, Is.EqualTo(2));
             Assert.That(targetPrefix.Signature, Is.EqualTo("Target"));
-            Assert.That(targetPrefix.TargetNamed, Is.True);
+            Assert.That(targetPrefix.IsTargetNamed, Is.True);
             Assert.That(targetPrefix.TargetName, Is.EqualTo(new string('Q', 255)));
 
             Assert.That(dfuImage.ImageElements.Count, Is.EqualTo(1));

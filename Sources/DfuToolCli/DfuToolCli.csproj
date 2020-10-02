@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyTitle>Dfu Tool Command Line Utility</AssemblyTitle>
+        <AssemblyName>DfuToolCli</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommandLineParser" Version="2.8.0" />
+        <PackageReference Include="Autofac" Version="5.1.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DfuConvLib\DfuConvLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!--
+          Declaring InternalsVisibleTo in the csproj
+          https://www.meziantou.net/declaring-internalsvisibleto-in-the-csproj.htm
+        -->
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+            <!-- We use the value of AssemblyName to declare the value of the attribute -->
+        </AssemblyAttribute>
+    </ItemGroup>
+
+</Project>

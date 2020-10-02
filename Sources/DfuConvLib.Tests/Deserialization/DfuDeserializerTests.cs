@@ -120,9 +120,9 @@ namespace DfuConvLib.Tests.Deserialization {
             dfuSuffixMock.SetupProperty(x => x.DfuSignature);
 
             var targetPrefixMock = new Mock<ITargetPrefix>();
-            targetPrefixMock.SetupProperty(x => x.AlternateSetting);
+            targetPrefixMock.SetupProperty(x => x.TargetId);
             targetPrefixMock.SetupProperty(x => x.Signature);
-            targetPrefixMock.SetupProperty(x => x.TargetNamed);
+            targetPrefixMock.SetupProperty(x => x.IsTargetNamed);
             targetPrefixMock.SetupProperty(x => x.TargetName);
             targetPrefixMock.SetupProperty(x => x.TargetSize);
             targetPrefixMock.SetupProperty(x => x.NbElements);
@@ -186,9 +186,9 @@ namespace DfuConvLib.Tests.Deserialization {
 
             var dfuImage = dfu.Images.Images.First();
             var targetPrefix = dfuImage.Prefix;
-            Assert.That(targetPrefix.AlternateSetting, Is.EqualTo(2));
+            Assert.That(targetPrefix.TargetId, Is.EqualTo(2));
             Assert.That(targetPrefix.Signature, Is.EqualTo("Target"));
-            Assert.That(targetPrefix.TargetNamed, Is.True);
+            Assert.That(targetPrefix.IsTargetNamed, Is.True);
             Assert.That(targetPrefix.TargetName, Is.EqualTo(new string('Q', 255)));
 
             Assert.That(dfuImage.ImageElements.Count, Is.EqualTo(1));

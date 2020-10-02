@@ -10,16 +10,16 @@
         string Signature { get; set; }
 
         /// <summary>
-        /// The AlternateSetting field gives the device alternate setting for which the associated
+        /// The TargetId (AlternateSetting) field gives the device alternate setting for which the associated
         /// image can be used.
         /// </summary>
-        int AlternateSetting { get; set; }
+        int TargetId { get; set; }
 
         /// <summary>
-        /// The TargetNamed field is a boolean value which indicates if the target is named or
+        /// The IsTargetNamed field is a boolean value which indicates if the target is named or
         /// not.
         /// </summary>
-        bool TargetNamed { get; set; }
+        bool IsTargetNamed { get; set; }
 
         /// <summary>
         /// The TargetName field gives the target name.
