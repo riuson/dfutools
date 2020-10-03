@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DfuConvLib\DfuConvLib.csproj" />
+        <ProjectReference Include="..\DfuLib\DfuLib.csproj" />
         <ProjectReference Include="..\DfuToolCli\DfuToolCli.csproj" />
     </ItemGroup>
 

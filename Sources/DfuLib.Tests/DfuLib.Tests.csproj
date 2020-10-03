@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyTitle>Dfu Converter Library Tests</AssemblyTitle>
+        <AssemblyName>DfuLib.Tests</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DfuLib\DfuLib.csproj" />
+    </ItemGroup>
+
+</Project>

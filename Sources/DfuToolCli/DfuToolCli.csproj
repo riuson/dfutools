@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DfuConvLib\DfuConvLib.csproj" />
+        <ProjectReference Include="..\DfuLib\DfuLib.csproj" />
     </ItemGroup>
 
     <ItemGroup>

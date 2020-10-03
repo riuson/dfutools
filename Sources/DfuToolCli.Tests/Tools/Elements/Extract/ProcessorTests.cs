@@ -1,4 +1,4 @@
-﻿using DfuConvLib.Helpers;
+﻿using DfuLib.Helpers;
 using DfuToolCli.Tools.Elements.Extract;
 using NUnit.Framework;
 using System;

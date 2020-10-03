@@ -1,4 +1,4 @@
-﻿using DfuConvLib.Helpers;
+﻿using DfuLib.Helpers;
 using DfuToolCli.Tests.Helpers;
 using DfuToolCli.Tools.Dfus.Clear;
 using NUnit.Framework;

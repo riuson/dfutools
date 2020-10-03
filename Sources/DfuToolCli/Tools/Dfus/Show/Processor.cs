@@ -1,4 +1,4 @@
-﻿using DfuConvLib.Interfaces;
+﻿using DfuLib.Interfaces;
 using DfuToolCli.Interfaces;
 using System;
 using System.IO;

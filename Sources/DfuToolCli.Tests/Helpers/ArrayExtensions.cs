@@ -1,4 +1,4 @@
-﻿using DfuConvLib.Helpers;
+﻿using DfuLib.Helpers;
 using System;
 
 namespace DfuToolCli.Tests.Helpers {

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DfuToolCli": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    }
+  }
+}

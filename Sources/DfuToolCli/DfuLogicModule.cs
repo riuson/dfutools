@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using DfuConvLib.Interfaces;
+using DfuLib.Interfaces;
 
 namespace DfuToolCli {
     public class DfuLogicModule : Module {
