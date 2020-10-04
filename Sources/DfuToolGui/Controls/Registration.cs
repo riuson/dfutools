@@ -5,6 +5,12 @@ namespace DfuToolGui.Controls {
         protected override void Load(ContainerBuilder builder) {
             builder.RegisterType<MainWindow>()
                 .AsSelf();
+            builder.RegisterType<DfuEditorView>()
+                .AsSelf();
+            builder.RegisterType<DfuEditorViewModel>()
+                .AsSelf();
+            builder.RegisterType<DfuEditorModel>()
+                .AsSelf();
         }
     }
 }

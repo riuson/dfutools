@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    mc:Ignorable="d"
+                    xmlns:interfaces="clr-namespace:DfuLib.Interfaces;assembly=DfuLib"
+                    xmlns:converters="clr-namespace:DfuToolGui.Classes.Converters">
+    <converters:ByteArrayConverter x:Key="byteArrayConverter" />
+
+    <DataTemplate x:Key="ImageElementItemTemplate">
+        <Grid d:DataContext="{d:DesignInstance Type=interfaces:IImageElement}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0">
+                Address:
+            </TextBlock>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="2">
+                Size:
+            </TextBlock>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0">
+                Data:
+            </TextBlock>
+
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Text="{Binding Path=ElementAddress, StringFormat={}{0:X8}}" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="3"
+                       Text="{Binding Path=ElementSize}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       TextTrimming="WordEllipsis"
+                       Text="{Binding Path=Data, Converter={StaticResource byteArrayConverter}}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DfuImageItemTemplate">
+        <Grid d:DataContext="{d:DesignInstance Type=interfaces:IDfuImage}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0">
+                ID:
+            </TextBlock>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="2">
+                Size:
+            </TextBlock>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0">
+                Name:
+            </TextBlock>
+
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Text="{Binding Path=Prefix.TargetId}" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="3"
+                       Text="{Binding Path=Prefix.TargetSize}" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="4"
+                     Text="{Binding Path=Prefix.TargetName}" />
+
+            <GroupBox Grid.Row="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="4"
+                      Header="Elements">
+                <ListBox ItemsSource="{Binding Path=ImageElements}"
+                         ItemTemplate="{StaticResource ImageElementItemTemplate}"
+                         HorizontalContentAlignment="Stretch"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+            </GroupBox>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
