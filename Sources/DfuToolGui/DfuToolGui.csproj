@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <AssemblyTitle>Dfu Tool Graphical Utility</AssemblyTitle>
+        <AssemblyName>DfuToolGui</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <OutputType>WinExe</OutputType>
+        <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DfuLib\DfuLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="5.1.4" />
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+        <PackageReference Include="ReactiveUI.Fody" Version="11.4.1" />
+        <PackageReference Include="ReactiveUI.Events.WPF" Version="11.4.1" />
+        <PackageReference Include="ReactiveUI.WPF" Version="11.4.1" />
+        <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!--
+          Declaring InternalsVisibleTo in the csproj
+          https://www.meziantou.net/declaring-internalsvisibleto-in-the-csproj.htm
+        -->
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+            <!-- We use the value of AssemblyName to declare the value of the attribute -->
+        </AssemblyAttribute>
+    </ItemGroup>
+
+</Project>
