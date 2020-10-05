@@ -5,5 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid />
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <MenuItem Header="Save _As" />
+                <MenuItem Header="_Close" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Add Target" />
+                <MenuItem Header="Remove Target" />
+                <Separator />
+                <MenuItem Header="Add Element" />
+                <MenuItem Header="Remove Element" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_Github" />
+                <MenuItem Header="_About" />
+            </MenuItem>
+        </Menu>
+    </DockPanel>
 </Window>
