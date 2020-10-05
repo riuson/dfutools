@@ -1,4 +1,4 @@
-﻿using DfuToolGui.Controls;
+﻿using DfuToolGui.Controls.Main;
 using DfuToolGui.Startup;
 using System.Windows;
 

@@ -1,4 +1,4 @@
-﻿namespace DfuToolGui.Controls {
+﻿namespace DfuToolGui.Controls.Editor {
     /// <summary>
     /// Логика взаимодействия для DfuEditorView.xaml
     /// </summary>

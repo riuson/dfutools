@@ -1,7 +1,7 @@
 ﻿using DfuLib.Interfaces;
 using System.Collections.Generic;
 
-namespace DfuToolGui.Controls.Demo {
+namespace DfuToolGui.Controls.Editor.Demo {
     internal class DfuImageDemo : IDfuImage {
         public DfuImageDemo() {
             this.Prefix = new TargetPrefixDemo();

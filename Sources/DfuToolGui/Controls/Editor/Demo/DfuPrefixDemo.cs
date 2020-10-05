@@ -1,6 +1,6 @@
 ﻿using DfuLib.Interfaces;
 
-namespace DfuToolGui.Controls.Demo {
+namespace DfuToolGui.Controls.Editor.Demo {
     internal class DfuPrefixDemo : IDfuPrefix {
         public string Signature { get; set; }
         public int Version { get; set; }

@@ -1,7 +1,7 @@
 ﻿using DfuLib.Interfaces;
 using System;
 
-namespace DfuToolGui.Controls.Demo {
+namespace DfuToolGui.Controls.Editor.Demo {
     internal class TargetPrefixDemo : ITargetPrefix {
         private static readonly Random _rnd = new Random();
 

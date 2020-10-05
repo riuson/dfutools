@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace DfuToolGui.Controls.Demo {
+namespace DfuToolGui.Controls.Editor.Demo {
     internal class ImageElementDemo : IImageElement {
         private static readonly Random _rnd = new Random();
 

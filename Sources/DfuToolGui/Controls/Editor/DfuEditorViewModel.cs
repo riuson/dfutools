@@ -1,7 +1,7 @@
 ﻿using DfuLib.Interfaces;
 using System;
 
-namespace DfuToolGui.Controls {
+namespace DfuToolGui.Controls.Editor {
     internal class DfuEditorViewModel {
         private readonly Func<IDfu> _createDfu;
         private readonly Func<IDfuImages> _createDfuImages;

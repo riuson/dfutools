@@ -1,6 +1,6 @@
 ﻿using DfuLib.Interfaces;
 
-namespace DfuToolGui.Controls.Demo {
+namespace DfuToolGui.Controls.Editor.Demo {
     internal class DfuSuffixDemo : IDfuSuffix {
         public DfuSuffixDemo() {
             this.Vendor = 0x0483;

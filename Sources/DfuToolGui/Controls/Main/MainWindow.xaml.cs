@@ -1,4 +1,4 @@
-﻿namespace DfuToolGui.Controls {
+﻿namespace DfuToolGui.Controls.Main {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

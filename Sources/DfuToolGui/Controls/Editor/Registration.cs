@@ -1,10 +1,8 @@
 ﻿using Autofac;
 
-namespace DfuToolGui.Controls {
+namespace DfuToolGui.Controls.Editor {
     public class Registration : Module {
         protected override void Load(ContainerBuilder builder) {
-            builder.RegisterType<MainWindow>()
-                .AsSelf();
             builder.RegisterType<DfuEditorView>()
                 .AsSelf();
             builder.RegisterType<DfuEditorViewModel>()
