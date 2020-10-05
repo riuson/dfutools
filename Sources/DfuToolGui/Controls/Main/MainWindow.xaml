@@ -14,7 +14,8 @@
                 <MenuItem Header="Save _As" />
                 <MenuItem Header="_Close" />
                 <Separator />
-                <MenuItem Header="_Exit" />
+                <MenuItem Header="_Exit"
+                          x:Name="MenuItemExit" />
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="Add Target" />
