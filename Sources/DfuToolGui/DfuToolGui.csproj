@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="5.1.4" />
+        <PackageReference Include="Autofac" Version="5.2.0" />
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
         <PackageReference Include="ReactiveUI.Fody" Version="11.4.1" />
         <PackageReference Include="ReactiveUI.Events.WPF" Version="11.4.1" />
