@@ -10,17 +10,20 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_New"
-                          x:Name="MenuItemNew" />
-                <MenuItem Header="_Open"
-                          x:Name="MenuItemOpen" />
+                          x:Name="MenuItemNew"
+                          ToolTip="Start new editor's instance with empty file" />
+                <MenuItem Header="_Open..."
+                          x:Name="MenuItemOpen"
+                          ToolTip="Start new editor's instance with selected file" />
                 <MenuItem Header="_Save"
-                          x:Name="MenuItemSave" />
-                <MenuItem Header="Save _As"
-                          x:Name="MenuItemSaveAs" />
-                <MenuItem Header="_Close" />
-                <Separator />
-                <MenuItem Header="_Exit"
-                          x:Name="MenuItemExit" />
+                          x:Name="MenuItemSave"
+                          ToolTip="Save content to file" />
+                <MenuItem Header="Save _As..."
+                          x:Name="MenuItemSaveAs"
+                          ToolTip="Save content to new file" />
+                <MenuItem Header="_Close"
+                          x:Name="MenuItemClose"
+                          ToolTip="Close editor" />
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="Add Target" />

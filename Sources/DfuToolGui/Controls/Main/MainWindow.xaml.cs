@@ -19,8 +19,8 @@ namespace DfuToolGui.Controls.Main {
                     .DisposeWith(disposables);
                 this.BindCommand(
                         this.ViewModel,
-                        vm => vm.CommandExit,
-                        v => v.MenuItemExit)
+                        vm => vm.CommandClose,
+                        v => v.MenuItemClose)
                     .DisposeWith(disposables);
                 this.BindCommand(
                         this.ViewModel,

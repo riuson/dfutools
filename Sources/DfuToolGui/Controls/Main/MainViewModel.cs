@@ -32,7 +32,7 @@ namespace DfuToolGui.Controls.Main {
             this.FileName = string.Empty;
 
             this.CommandNew = ReactiveCommand.Create(this.New);
-            this.CommandExit = ReactiveCommand.Create<Window>(this.Exit);
+            this.CommandClose = ReactiveCommand.Create<Window>(this.Close);
             this.CommandSave = ReactiveCommand.Create(this.Save);
             this.CommandSaveAs = ReactiveCommand.Create(this.SaveAs);
             this.CommandOpen = ReactiveCommand.Create(this.Open);
@@ -43,7 +43,7 @@ namespace DfuToolGui.Controls.Main {
         }
 
         public ReactiveCommand<Unit, Unit> CommandNew { get; }
-        public ReactiveCommand<Window, Unit> CommandExit { get; }
+        public ReactiveCommand<Window, Unit> CommandClose { get; }
         public ReactiveCommand<Unit, Unit> CommandSave { get; }
         public ReactiveCommand<Unit, Unit> CommandSaveAs { get; }
         public ReactiveCommand<Unit, Unit> CommandOpen { get; }
@@ -54,7 +54,7 @@ namespace DfuToolGui.Controls.Main {
 
         private void New() => this.RunNewInstance(string.Empty);
 
-        private void Exit(Window window) => Application.Current.MainWindow?.Close();
+        private void Close(Window window) => Application.Current.MainWindow?.Close();
 
         private void Save() {
             if (string.IsNullOrEmpty(this.FileName)) {
