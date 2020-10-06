@@ -7,8 +7,6 @@ namespace DfuToolGui.Controls.Editor {
                 .AsSelf();
             builder.RegisterType<DfuEditorViewModel>()
                 .AsSelf();
-            builder.RegisterType<DfuEditorModel>()
-                .AsSelf();
         }
     }
 }

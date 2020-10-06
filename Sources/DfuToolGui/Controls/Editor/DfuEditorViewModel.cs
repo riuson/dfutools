@@ -2,7 +2,7 @@
 using System;
 
 namespace DfuToolGui.Controls.Editor {
-    internal class DfuEditorViewModel {
+    public class DfuEditorViewModel {
         private readonly Func<IDfu> _createDfu;
         private readonly Func<IDfuImages> _createDfuImages;
         private readonly Func<IDfuPrefix> _createDfuPrefix;
@@ -23,8 +23,8 @@ namespace DfuToolGui.Controls.Editor {
             this.Dfu.Images = this._createDfuImages();
             this.Dfu.Suffix = this._createDfuSuffix();
             this.Dfu.Suffix.Vendor = 0x0483;
-            this.Dfu.Suffix.Product = 0x1234;
-            this.Dfu.Suffix.Device = 0x5678;
+            this.Dfu.Suffix.Product = 0;
+            this.Dfu.Suffix.Device = 0;
         }
 
         public IDfu Dfu { get; }

@@ -30,5 +30,6 @@
                 <MenuItem Header="_About" />
             </MenuItem>
         </Menu>
+        <ContentControl Content="{Binding Path=EditorControl}" />
     </DockPanel>
 </Window>

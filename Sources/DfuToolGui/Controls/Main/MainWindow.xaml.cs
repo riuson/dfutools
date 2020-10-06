@@ -6,6 +6,8 @@ namespace DfuToolGui.Controls.Main {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : IViewFor<MainViewModel> {
+        private MainViewModel _viewModel;
+
         public MainWindow() {
             this.InitializeComponent();
 
@@ -28,6 +30,12 @@ namespace DfuToolGui.Controls.Main {
             set => this.ViewModel = value as MainViewModel;
         }
 
-        public MainViewModel ViewModel { get; set; }
+        public MainViewModel ViewModel {
+            get => this._viewModel;
+            set {
+                this._viewModel = value;
+                this.DataContext = value;
+            }
+        }
     }
 }
