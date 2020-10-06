@@ -11,7 +11,8 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New"
                           x:Name="MenuItemNew" />
-                <MenuItem Header="_Open" />
+                <MenuItem Header="_Open"
+                          x:Name="MenuItemOpen" />
                 <MenuItem Header="_Save"
                           x:Name="MenuItemSave" />
                 <MenuItem Header="Save _As"

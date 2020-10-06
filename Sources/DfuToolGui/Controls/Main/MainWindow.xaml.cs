@@ -32,6 +32,11 @@ namespace DfuToolGui.Controls.Main {
                         vm => vm.CommandSaveAs,
                         v => v.MenuItemSaveAs)
                     .DisposeWith(disposables);
+                this.BindCommand(
+                        this.ViewModel,
+                        vm => vm.CommandOpen,
+                        v => v.MenuItemOpen)
+                    .DisposeWith(disposables);
             });
         }
 

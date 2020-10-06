@@ -1,6 +1,7 @@
 ﻿using DfuToolGui.Controls.Main;
 using DfuToolGui.Startup;
 using ReactiveUI;
+using System.IO;
 using System.Windows;
 
 namespace DfuToolGui {
@@ -20,6 +21,14 @@ namespace DfuToolGui {
             var viewModel = this._bootstrapper.Resolve<MainViewModel>();
             var view = this._bootstrapper.Resolve<IViewFor<MainViewModel>>();
             view.ViewModel = viewModel;
+
+            if (e.Args.Length > 0) {
+                var filename = e.Args[0];
+
+                if (File.Exists(filename)) {
+                    viewModel.Load(filename);
+                }
+            }
 
             if (view is MainWindow window) {
                 window.Closed += (sender, args) => this._bootstrapper.Shurdown();
