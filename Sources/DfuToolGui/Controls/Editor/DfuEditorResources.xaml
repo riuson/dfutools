@@ -39,7 +39,7 @@
 
             <TextBox Grid.Row="0"
                      Grid.Column="1"
-                     Text="{Binding Path=ElementAddress, Converter={StaticResource hexStringConverter}, ConverterParameter=8}" />
+                     Text="{Binding Path=ElementAddress, Converter={StaticResource hexStringConverter}, ConverterParameter=8, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Grid.Row="0"
                        Grid.Column="3"
                        Text="{Binding Path=ElementSize}" />
@@ -82,14 +82,14 @@
 
             <TextBox Grid.Row="0"
                      Grid.Column="1"
-                     Text="{Binding Path=Prefix.TargetId}" />
+                     Text="{Binding Path=Prefix.TargetId, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Grid.Row="0"
                        Grid.Column="3"
                        Text="{Binding Path=Prefix.TargetSize}" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Grid.ColumnSpan="4"
-                     Text="{Binding Path=Prefix.TargetName}" />
+                     Text="{Binding Path=Prefix.TargetName, UpdateSourceTrigger=PropertyChanged}" />
 
             <GroupBox Grid.Row="3"
                       Grid.Column="1"
