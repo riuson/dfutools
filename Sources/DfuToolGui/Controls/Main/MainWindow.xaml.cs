@@ -22,6 +22,16 @@ namespace DfuToolGui.Controls.Main {
                         vm => vm.CommandExit,
                         v => v.MenuItemExit)
                     .DisposeWith(disposables);
+                this.BindCommand(
+                        this.ViewModel,
+                        vm => vm.CommandSave,
+                        v => v.MenuItemSave)
+                    .DisposeWith(disposables);
+                this.BindCommand(
+                        this.ViewModel,
+                        vm => vm.CommandSaveAs,
+                        v => v.MenuItemSaveAs)
+                    .DisposeWith(disposables);
             });
         }
 

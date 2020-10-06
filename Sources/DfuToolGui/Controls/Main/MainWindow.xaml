@@ -4,15 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding Path=WindowTitle}"
+        Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_New"
                           x:Name="MenuItemNew" />
                 <MenuItem Header="_Open" />
-                <MenuItem Header="_Save" />
-                <MenuItem Header="Save _As" />
+                <MenuItem Header="_Save"
+                          x:Name="MenuItemSave" />
+                <MenuItem Header="Save _As"
+                          x:Name="MenuItemSaveAs" />
                 <MenuItem Header="_Close" />
                 <Separator />
                 <MenuItem Header="_Exit"
