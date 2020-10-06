@@ -6,6 +6,7 @@
                     xmlns:interfaces="clr-namespace:DfuLib.Interfaces;assembly=DfuLib"
                     xmlns:converters="clr-namespace:DfuToolGui.Classes.Converters">
     <converters:ByteArrayConverter x:Key="byteArrayConverter" />
+    <converters:HexStringConverter x:Key="hexStringConverter" />
 
     <DataTemplate x:Key="ImageElementItemTemplate">
         <Grid d:DataContext="{d:DesignInstance Type=interfaces:IImageElement}">
@@ -38,7 +39,7 @@
 
             <TextBox Grid.Row="0"
                      Grid.Column="1"
-                     Text="{Binding Path=ElementAddress, StringFormat={}{0:X8}}" />
+                     Text="{Binding Path=ElementAddress, Converter={StaticResource hexStringConverter}, ConverterParameter=8}" />
             <TextBlock Grid.Row="0"
                        Grid.Column="3"
                        Text="{Binding Path=ElementSize}" />
